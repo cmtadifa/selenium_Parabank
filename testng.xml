@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Registration Test Suite">
+    <test name="Registration">
+        <classes>
+            <class name="testcase.accounts.accountRegistrationTest"/>
+            <!-- Add more test classes here -->
+        </classes>
+    </test>
+</suite>
