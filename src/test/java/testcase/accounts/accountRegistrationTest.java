@@ -16,6 +16,7 @@ public class accountRegistrationTest extends basepage {
         homepage homePage = new homepage(driver);
 
         homePage.clickRegister();
+        homePage.fillUpRegFrom();
 
     }
 
