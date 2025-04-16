@@ -20,3 +20,7 @@ testng.xml - need to create another testng.xml file to run another
         </classes>
     </test>
 </suite>
+
+
+to run allure report
+allure serve E:\Automation_Projects\selenium_Parabank\allure-results

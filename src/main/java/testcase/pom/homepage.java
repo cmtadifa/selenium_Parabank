@@ -26,6 +26,11 @@ public class homepage {
     private By regBtn = By.xpath("//input[@value='Register']");
     private By regSuccessfully = By.className("title");
 
+    //login
+    private By liUsername = By.xpath("//input[@name='username']");
+    private By liPassword =  By.xpath("//input[@name='password']");
+    private By liBtm = By.xpath("//input[@value='Log In']");
+
     //faker
     private String fName = faker.name().firstName();
     private String lName = faker.name().lastName();
@@ -48,7 +53,7 @@ public class homepage {
         driver.findElement(registerLink).click();
     }
 
-    public void fillUpRegFrom() {
+    public void register() {
         driver.findElement(regFname).sendKeys(fName);
         driver.findElement(regLname).sendKeys(lName);
         driver.findElement(regStreet).sendKeys(street);
@@ -64,5 +69,10 @@ public class homepage {
         Assert.assertEquals(driver.findElement(regSuccessfully).getText(),"Welcome "+userName);
     }
 
+    public void login() {
+        driver.findElement(liUsername).sendKeys("admin");
+        driver.findElement(liPassword).sendKeys("parabankTest");
+        driver.findElement(liBtm).click();
+    }
 
 }
