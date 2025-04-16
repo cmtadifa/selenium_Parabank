@@ -1,5 +1,6 @@
 package testcase.accounts;
 
+import jdk.jfr.Description;
 import testcase.base.basepage;
 import testcase.pom.homepage;
 import testcase.utils.config;
@@ -11,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class accountRegistrationTest extends basepage {
 
-    @Test
+    @Test(description = "register a valid account")
     public void testExample() {
         homepage homePage = new homepage(driver);
 
