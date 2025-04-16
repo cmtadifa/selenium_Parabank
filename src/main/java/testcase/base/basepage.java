@@ -20,11 +20,11 @@ public class basepage {
         driver.get(config.BASE_URL);
     }
 
-//    @AfterClass
-//    public void tearDown() {
-//        // Close the browser after each test
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
+    @AfterClass
+    public void tearDown() {
+        // Close the browser after each test
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }
