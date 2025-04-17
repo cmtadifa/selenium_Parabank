@@ -24,3 +24,9 @@ testng.xml - need to create another testng.xml file to run another
 
 to run allure report
 allure serve E:\Automation_Projects\selenium_Parabank\allure-results
+
+to run xml
+mvn test -DsuiteXmlFile=testng.xml
+
+
+
