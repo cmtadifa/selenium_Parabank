@@ -1,0 +1,1 @@
+{"uuid":"7c5fbd64-037c-422f-a270-1d0be5f6ebeb","name":"testcase.accounts.accountRegistrationTest","children":["c724fa82-7f00-4d20-80cb-930138fab0f7"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1744855026131,"stop":1744855030668}],"afters":[],"start":1744855026106,"stop":1744855032061}

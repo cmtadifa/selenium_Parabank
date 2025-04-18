@@ -1,5 +1,6 @@
 package testcase.accounts;
 
+import io.qameta.allure.*;
 import testcase.base.basepage;
 import testcase.pom.homepage;
 import org.testng.annotations.Test;
@@ -13,7 +14,6 @@ public class accountRegistrationTest extends basepage {
 
         homePage.clickRegister();
         homePage.register();
-
     }
 
 

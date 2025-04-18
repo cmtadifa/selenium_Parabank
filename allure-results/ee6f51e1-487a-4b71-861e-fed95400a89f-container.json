@@ -1,0 +1,1 @@
+{"uuid":"ee6f51e1-487a-4b71-861e-fed95400a89f","name":"testcase.base.baseE2Epage.setup","children":["23cc04e4-300f-4ef2-9e24-4a0bc3ebd3b0"],"description":"","befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1744855428681,"stop":1744855433155}],"afters":[],"start":1744855428680,"stop":1744855433155}
