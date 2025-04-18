@@ -67,6 +67,7 @@ public class homepage {
         driver.findElement(regConfPassword).sendKeys(confPassWord);
         driver.findElement(regBtn).click();
         Assert.assertEquals(driver.findElement(regSuccessfully).getText(),"Welcome "+userName);
+        System.out.println(userName);
     }
 
     public void login() {
