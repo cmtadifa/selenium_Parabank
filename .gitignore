@@ -40,3 +40,4 @@ build/
 #Allure
 target/allure-results/
 target/allure-report/
+allure-results

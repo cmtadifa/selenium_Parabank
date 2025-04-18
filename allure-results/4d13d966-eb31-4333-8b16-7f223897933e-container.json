@@ -1,1 +1,0 @@
-{"uuid":"4d13d966-eb31-4333-8b16-7f223897933e","name":"testcase.services.loan","children":["a76a1361-c2d2-42e3-aa1c-ff117b6a1330"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1745019714983,"stop":1745019742289}],"afters":[],"start":1745019714959,"stop":1745019742423}
