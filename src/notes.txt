@@ -29,4 +29,3 @@ to run xml
 mvn test -DsuiteXmlFile=testng.xml
 
 
-
