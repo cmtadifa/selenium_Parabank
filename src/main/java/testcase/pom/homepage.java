@@ -49,6 +49,14 @@ public class homepage {
         this.driver = driver;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
     public void clickRegister() {
         driver.findElement(registerLink).click();
     }
