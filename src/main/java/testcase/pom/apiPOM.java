@@ -9,10 +9,31 @@ import static io.restassured.RestAssured.*;
 public class apiPOM extends baseAPI {
     //get login get the id
     int customerID;
+
+    // Add this inner class to hold account information
+    public static class AccountInfo {
+        private int accountId;
+        private double balance;
+
+        public AccountInfo(int accountId, double balance) {
+            this.accountId = accountId;
+            this.balance = balance;
+        }
+
+        // Getters
+        public int getAccountId() {
+            return accountId;
+        }
+
+        public double getBalance() {
+            return balance;
+        }
+    }
+
     public int getCustomer(String userName, String passWord){
         XmlPath xmlPath = given()
-                .header("Content-Type", "application/xml")
-                .header("Accept", "application/xml")
+//                .header("Content-Type", "application/xml")
+//                .header("Accept", "application/xml")
                 .pathParam("username", userName)
                 .pathParam("password", passWord)
                 .when()
@@ -25,18 +46,26 @@ public class apiPOM extends baseAPI {
         System.out.println("Customer ID: " + customerID);
         return customerID;
     }
-    //get customer account and get the customer ID
-    public int getCustomerID(int accountID) {
-        JsonPath jsonPath = given()
-                .pathParam("accountId", accountID)
+
+    //get customer account and get the account ID
+    public AccountInfo getAccountID(int customerID) {
+        XmlPath xmlPath = given()
+                .pathParam("customerId", customerID)
                 .when()
-                .get("/accounts/{accountId}")
-                .jsonPath();
+                .get("/customers/{customerId}/accounts")
+                .then()
+                .extract()
+                .xmlPath();
 
         // Extract the customerId from the JSON response
-        int customerId = jsonPath.getInt("customerId");
-
-        return customerId; // Return the extracted customerId
+        int accountID = xmlPath.getInt("accounts.account.id");
+        double balance = xmlPath.getDouble("accounts.account.balance");
+        System.out.println("Account ID: " + accountID);
+        System.out.println("Balance: " + balance);
+        return new AccountInfo(accountID, balance);
     }
+
+
+
 
 }

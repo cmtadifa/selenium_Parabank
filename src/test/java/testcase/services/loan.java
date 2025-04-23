@@ -24,15 +24,20 @@ public class loan extends baseE2Epage {
         apiPOM api = new apiPOM();
         homepage homePage = new homepage(driver);
         String passWord = homePage.getPassWord();
-        api.getCustomer(userName,passWord);
+        int customerId = api.getCustomer(userName, passWord);
+        apiPOM.AccountInfo accountInfo = api.getAccountID(customerId);
+        int accountId = accountInfo.getAccountId();
+        double balance = accountInfo.getBalance();
+
     }
 
 
-//    @Test(description = "request a loan")
-//    public void request_loan() {
-//        accountServices accService = new accountServices(driver);
-//        accService.selectAccountServices("reqLoan");
-//    }
+    @Test(description = "request a loan")
+    public void request_loan() {
+        accountServices accService = new accountServices(driver);
+        accService.selectAccountServices("reqLoan");
+
+    }
 
 
 }

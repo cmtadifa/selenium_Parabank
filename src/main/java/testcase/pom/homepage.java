@@ -40,7 +40,8 @@ public class homepage {
     private String zipCode = faker.address().zipCode();
     private String phone = faker.phoneNumber().phoneNumber();
     private String ssn = faker.idNumber().ssnValid();
-    private String userName = fName+lName;
+    String randomNo = faker.number().digits(4);
+    private String userName = fName+lName+randomNo;
     private String passWord = "parabankTest";
     private String confPassWord = passWord; // to match password
 

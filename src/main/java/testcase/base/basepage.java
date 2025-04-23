@@ -8,7 +8,6 @@ import testcase.utils.config;
 
 public class basepage {
     protected WebDriver driver;
-    protected WebDriver wait;
 
     @BeforeMethod
     public void setup() {

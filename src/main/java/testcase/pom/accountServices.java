@@ -3,6 +3,15 @@ package testcase.pom;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.time.Duration;
+
+import static org.testng.AssertJUnit.assertTrue;
 
 public class accountServices {
     private WebDriver driver;
@@ -17,6 +26,12 @@ public class accountServices {
     private By reqLoanLink = By.linkText("Request Loan");
     private By logOutLink = By.linkText("Log Out");
 
+    private By loanAmount = By.xpath("//input[@id='amount']");
+    private By loanDownAmount = By.xpath("//input[@id='downPayment']");
+    private By loanAccountNo = By.xpath("//select[@id='fromAccountId']");
+    private By loanApplyBtn = By.xpath("//input[@value='Apply Now']");
+    private By successfullyLoanTxt = By.xpath("//h1[contains(text(),'Loan Request Processed')]");
+    //div[@id='loanRequestApproved']/p
     public accountServices(WebDriver driver) {
         this.driver = driver;
     }
@@ -48,6 +63,39 @@ public class accountServices {
                 driver.findElement(logOutLink).click();
                 break;
         }
+    }
+
+    public void inputLoanAmount(int loan){
+        driver.findElement(loanAmount).sendKeys(String.valueOf(loan));
+    }
+
+    public void inputDownPayment(double dpayment){
+        driver.findElement(loanDownAmount).sendKeys(String.valueOf(dpayment));
+    }
+
+    public void selectAccountNo(int index){
+        WebElement dropdown = driver.findElement(loanAccountNo);
+        Select accNoDropdown = new Select(dropdown);
+        accNoDropdown.selectByIndex(index);
+    }
+
+    public void clickLoanBtn(){
+        driver.findElement(loanApplyBtn).click();
+    }
+
+    public void successLoan() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(successfullyLoanTxt));
+        String text = element.getText();
+        Assert.assertEquals(text,"Loan Request Processed");
+    }
+
+    public void loanTestScenario(int loan, double dpayment, int index){
+        inputLoanAmount(loan);
+        inputDownPayment(dpayment);
+        selectAccountNo(index);
+        clickLoanBtn();
+        successLoan();
     }
 
 
