@@ -18,7 +18,12 @@ import testcase.base.loanbasepage;
             accService = new accountServices(driver);
             accService.loanTestScenario(100,100,0);
         }
-    //Verify Down payment is zero
+
+        @Test(description = "Verify Down payment is zero")
+        public void TCM3() {
+        accService = new accountServices(driver);
+        accService.loanTestScenario(100,0,0);
+    }
     //Verify Loan amount is small, affordable down payment
     //Verify Down payment equals exact balance
     //Verify Loan amount very low, down payment equals it but within balance
