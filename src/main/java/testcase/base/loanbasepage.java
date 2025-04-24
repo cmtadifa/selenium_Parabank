@@ -27,12 +27,12 @@ public class loanbasepage {
         accService.selectAccountServices("reqLoan");
     }
 
-//    @AfterMethod
-//    public void tearDown() {
-//        // Close the browser after each test
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
+    @AfterMethod
+    public void tearDown() {
+        // Close the browser after each test
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }
 

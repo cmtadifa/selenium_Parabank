@@ -2,7 +2,12 @@ package testcase.pom;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class homepage {
 
@@ -40,8 +45,7 @@ public class homepage {
     private String zipCode = faker.address().zipCode();
     private String phone = faker.phoneNumber().phoneNumber();
     private String ssn = faker.idNumber().ssnValid();
-    String randomNo = faker.number().digits(4);
-    private String userName = fName+lName+randomNo;
+    private String userName = "user_" + System.currentTimeMillis();
     private String passWord = "parabankTest";
     private String confPassWord = passWord; // to match password
 
@@ -72,11 +76,14 @@ public class homepage {
         driver.findElement(regPhone).sendKeys(phone);
         driver.findElement(regSsn).sendKeys(ssn);
         driver.findElement(regUsername).sendKeys(userName);
+        System.out.println("Generated username: " + userName);
         driver.findElement(regPassword).sendKeys(passWord);
         driver.findElement(regConfPassword).sendKeys(confPassWord);
-        driver.findElement(regBtn).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(regBtn));
+        button.click();
         Assert.assertEquals(driver.findElement(regSuccessfully).getText(),"Welcome "+userName);
-        System.out.println(userName);
     }
 
     public void login() {
