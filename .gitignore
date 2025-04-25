@@ -41,3 +41,4 @@ build/
 target/allure-results/
 target/allure-report/
 allure-results
+.allure
