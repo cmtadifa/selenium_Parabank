@@ -3,10 +3,13 @@ package testcase.services;
 import org.testng.annotations.Test;
 import testcase.pom.accountServices;
 import testcase.base.loanbasepage;
+import testcase.pom.apiPOM;
+import testcase.pom.homepage;
 
-    public class loanTest extends loanbasepage {
+public class loanTest extends loanbasepage {
 
-        accountServices accService;
+    accountServices accService;
+    apiPOM api;
         @Test(description = "Verify valid loan with down payment less than balance")
         public void TCM1() {
             accService = new accountServices(driver);
@@ -21,11 +24,18 @@ import testcase.base.loanbasepage;
 
         @Test(description = "Verify Down payment is zero")
         public void TCM3() {
-        accService = new accountServices(driver);
-        accService.loanTestScenario(100,0,0);
-    }
-    //Verify Loan amount is small, affordable down payment
-    //Verify Down payment equals exact balance
+            accService = new accountServices(driver);
+            accService.loanTestScenario(100,0,0);
+        }
+
+        @Test(description = "Verify Down payment equals exact balance")
+        public void TCM4() {
+            accService = new accountServices(driver);
+            api = new apiPOM();
+            double balance = api.getAccountBalance(userName, passWord);
+            accService.loanTestScenario(balance,balance,0);
+        }
+
     //Verify Loan amount very low, down payment equals it but within balance
     //Verify Down payment exceeds balance
     //Verify Down payment equal to loan but exceeds balance

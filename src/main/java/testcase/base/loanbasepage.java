@@ -12,7 +12,8 @@ import java.time.Duration;
 
 public class loanbasepage {
     protected WebDriver driver;
-
+    public String userName;
+    public String passWord;
     @BeforeMethod
     public void setup() {
         driver = new ChromeDriver();
@@ -24,6 +25,10 @@ public class loanbasepage {
         accountServices accService = new accountServices(driver);
         homePage.clickRegister();
         homePage.register();
+
+        this.userName = homePage.getUserName();
+        this.passWord = homePage.getPassWord();
+
         accService.selectAccountServices("reqLoan");
     }
 

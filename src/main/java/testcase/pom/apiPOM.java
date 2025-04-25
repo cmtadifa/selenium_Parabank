@@ -65,7 +65,13 @@ public class apiPOM extends baseAPI {
         return new AccountInfo(accountID, balance);
     }
 
+    public double getAccountBalance(String userName, String passWord) {
+        // Get customer ID first
+        int customerId = getCustomer(userName, passWord);
 
-
+        // Then get account info and return just the balance
+        AccountInfo accountInfo = getAccountID(customerId);
+        return accountInfo.getBalance();
+    }
 
 }

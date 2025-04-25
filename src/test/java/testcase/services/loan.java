@@ -9,7 +9,7 @@ import testcase.pom.apiPOM;
 
 
 public class loan extends baseE2Epage {
-    private String userName;
+    private String userName, passWord;
     @Test(description = "Register")
     public void navigate() {
         homepage homePage = new homepage(driver);
@@ -17,18 +17,19 @@ public class loan extends baseE2Epage {
         homePage.clickRegister();
         homePage.register();
         userName = homePage.getUserName();
+        passWord = homePage.getPassWord();
     }
 
     @Test(description = "testing", dependsOnMethods = "navigate")
     public void getCustomerID() {
-        apiPOM api = new apiPOM();
-        homepage homePage = new homepage(driver);
-        String passWord = homePage.getPassWord();
-        int customerId = api.getCustomer(userName, passWord);
-        apiPOM.AccountInfo accountInfo = api.getAccountID(customerId);
-        int accountId = accountInfo.getAccountId();
-        double balance = accountInfo.getBalance();
 
+        apiPOM api = new apiPOM();
+
+        // Just one line to get the balance
+        double balance = api.getAccountBalance(userName, passWord);
+
+        // Now use the balance as needed
+        System.out.println("Account balance: " + balance);
     }
 
 

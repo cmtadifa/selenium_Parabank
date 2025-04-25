@@ -65,7 +65,7 @@ public class accountServices {
         }
     }
 
-    public void inputLoanAmount(int loan){
+    public void inputLoanAmount(double loan){
         driver.findElement(loanAmount).sendKeys(String.valueOf(loan));
     }
 
@@ -90,7 +90,7 @@ public class accountServices {
         Assert.assertEquals(text,"Loan Request Processed");
     }
 
-    public void loanTestScenario(int loan, double dpayment, int index){
+    public void loanTestScenario(double loan, double dpayment, int index){
         inputLoanAmount(loan);
         inputDownPayment(dpayment);
         selectAccountNo(index);

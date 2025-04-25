@@ -80,7 +80,7 @@ public class homepage {
         driver.findElement(regPassword).sendKeys(passWord);
         driver.findElement(regConfPassword).sendKeys(confPassWord);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement button = wait.until(ExpectedConditions.elementToBeClickable(regBtn));
         button.click();
         Assert.assertEquals(driver.findElement(regSuccessfully).getText(),"Welcome "+userName);
