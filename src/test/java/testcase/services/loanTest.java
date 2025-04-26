@@ -53,8 +53,12 @@ public class loanTest extends loanbasepage {
             double excBalance = balance+10;
             accService.loanTestScenario(excBalance,excBalance,0,false);
         }
-    //
-    //Verify Down payment is negative
+
+        @Test(description = "Verify Down payment is negative", enabled = false)
+        public void TCM7() {
+            accService = new accountServices(driver);
+            accService.loanTestScenario(100.0,-50.0,0,false);
+        }
     //Verify Down payment contains characters
     //Verify Loan amount is missing
     //Verify Down payment is missing
