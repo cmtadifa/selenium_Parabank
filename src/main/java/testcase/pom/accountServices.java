@@ -30,8 +30,9 @@ public class accountServices {
     private By loanDownAmount = By.xpath("//input[@id='downPayment']");
     private By loanAccountNo = By.xpath("//select[@id='fromAccountId']");
     private By loanApplyBtn = By.xpath("//input[@value='Apply Now']");
-    private By successfullyLoanTxt = By.xpath("//h1[contains(text(),'Loan Request Processed')]");
-    //div[@id='loanRequestApproved']/p
+    private By successfullyLoanTxt = By.xpath("//p[contains(text(),'Congratulations, your loan has been approved.')]");
+    private By failLoanTxt = By.xpath("//p[contains(text(),'You do not have sufficient funds for the given')]");
+
     public accountServices(WebDriver driver) {
         this.driver = driver;
     }
@@ -87,15 +88,27 @@ public class accountServices {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(successfullyLoanTxt));
         String text = element.getText();
-        Assert.assertEquals(text,"Loan Request Processed");
+        Assert.assertEquals(text,"Congratulations, your loan has been approved.");
     }
 
-    public void loanTestScenario(double loan, double dpayment, int index){
+    public void failedLoan() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(failLoanTxt));
+        String text = element.getText();
+        Assert.assertEquals(text,"You do not have sufficient funds for the given down payment.");
+    }
+
+
+    public void loanTestScenario(double loan, double dpayment, int index, boolean success ){
         inputLoanAmount(loan);
         inputDownPayment(dpayment);
         selectAccountNo(index);
         clickLoanBtn();
-        successLoan();
+        if (success) {
+            successLoan();
+        }else{
+            failedLoan();
+        }
     }
 
 

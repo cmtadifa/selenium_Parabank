@@ -11,7 +11,7 @@ import testcase.pom.apiPOM;
 public class loan extends baseE2Epage {
     private String userName, passWord;
     @Test(description = "Register")
-    public void navigate() {
+    public void navigate() throws InterruptedException{
         homepage homePage = new homepage(driver);
 
         homePage.clickRegister();

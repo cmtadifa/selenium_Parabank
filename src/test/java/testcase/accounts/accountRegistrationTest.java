@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class accountRegistrationTest extends basepage {
 
     @Test(description = "register a valid account")
-    public void registration() {
+    public void registration() throws InterruptedException {
         homepage homePage = new homepage(driver);
 
         homePage.clickRegister();

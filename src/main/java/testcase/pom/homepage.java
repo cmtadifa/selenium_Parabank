@@ -1,5 +1,6 @@
 package testcase.pom;
 import com.github.javafaker.Faker;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -66,7 +67,7 @@ public class homepage {
         driver.findElement(registerLink).click();
     }
 
-    public void register() {
+    public void register() throws InterruptedException {
         driver.findElement(regFname).sendKeys(fName);
         driver.findElement(regLname).sendKeys(lName);
         driver.findElement(regStreet).sendKeys(street);
@@ -79,11 +80,11 @@ public class homepage {
         System.out.println("Generated username: " + userName);
         driver.findElement(regPassword).sendKeys(passWord);
         driver.findElement(regConfPassword).sendKeys(confPassWord);
+            Thread.sleep(1000);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(regBtn));
-        button.click();
+        driver.findElement(regBtn).click();
         Assert.assertEquals(driver.findElement(regSuccessfully).getText(),"Welcome "+userName);
+
     }
 
     public void login() {

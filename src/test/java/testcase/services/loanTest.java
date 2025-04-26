@@ -13,19 +13,19 @@ public class loanTest extends loanbasepage {
         @Test(description = "Verify valid loan with down payment less than balance")
         public void TCM1() {
             accService = new accountServices(driver);
-            accService.loanTestScenario(100,50,0);
+            accService.loanTestScenario(100.0,50.0,0, true);
         }
 
         @Test(description = "Verify Down payment equals balance")
         public void TCM2() {
             accService = new accountServices(driver);
-            accService.loanTestScenario(100,100,0);
+            accService.loanTestScenario(100.0,100.0,0, true);
         }
 
         @Test(description = "Verify Down payment is zero")
         public void TCM3() {
             accService = new accountServices(driver);
-            accService.loanTestScenario(100,0,0);
+            accService.loanTestScenario(100.0,0.0,0, true);
         }
 
         @Test(description = "Verify Down payment equals exact balance")
@@ -33,11 +33,27 @@ public class loanTest extends loanbasepage {
             accService = new accountServices(driver);
             api = new apiPOM();
             double balance = api.getAccountBalance(userName, passWord);
-            accService.loanTestScenario(balance,balance,0);
+            accService.loanTestScenario(balance,balance,0, true);
+        }
+
+        @Test(description = "Verify Loan amount very low, down payment equals it but within balance")
+        public void TCM5() {
+            accService = new accountServices(driver);
+            api = new apiPOM();
+            double balance = api.getAccountBalance(userName, passWord);
+            accService.loanTestScenario(balance,balance,0, true);
+        }
+
+        @Test(description = "Verify Down payment exceeds balance")
+        public void TCM6() {
+            accService = new accountServices(driver);
+            api = new apiPOM();
+            double balance = api.getAccountBalance(userName, passWord);
+            double excBalance = balance+10;
+            accService.loanTestScenario(balance,excBalance,0,false);
         }
 
     //Verify Loan amount very low, down payment equals it but within balance
-    //Verify Down payment exceeds balance
     //Verify Down payment equal to loan but exceeds balance
     //Verify Down payment is negative
     //Verify Down payment contains characters

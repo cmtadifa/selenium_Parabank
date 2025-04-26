@@ -15,7 +15,7 @@ public class loanbasepage {
     public String userName;
     public String passWord;
     @BeforeMethod
-    public void setup() {
+    public void setup() throws InterruptedException {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
