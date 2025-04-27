@@ -83,8 +83,12 @@ public class loanTest extends loanbasepage {
             accService = new accountServices(driver);
             accService.loanTestScenario("100.0","",0,"error");
         }
-    //Verify Down payment of $201 (over the balance)
-    //Verify Loan amount zero
+
+        @Test(description = "Verify Loan amount zero")
+        public void TCM12() {
+            accService = new accountServices(driver);
+            accService.loanTestScenario("0","100.0",0,"error");
+        }
 
 
 /*
