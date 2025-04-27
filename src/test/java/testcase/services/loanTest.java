@@ -65,6 +65,12 @@ public class loanTest extends loanbasepage {
             accService = new accountServices(driver);
             accService.loanTestScenario("100.0","@123%^",0,"error");
         }
+
+        @Test(description = "Verify Loan amount contains characters")
+        public void TCM9() {
+            accService = new accountServices(driver);
+            accService.loanTestScenario("@123%^","100.0",0,"error");
+        }
     //Verify Loan amount is missing
     //Verify Down payment is missing
     //Verify Down payment of $201 (over the balance)
