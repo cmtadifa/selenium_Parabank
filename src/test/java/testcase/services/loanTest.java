@@ -13,53 +13,58 @@ public class loanTest extends loanbasepage {
         @Test(description = "Verify valid loan with down payment less than balance")
         public void TCM1() {
             accService = new accountServices(driver);
-            accService.loanTestScenario(100.0,50.0,0, true);
+            accService.loanTestScenario("100.0","50.0",0, "success");
         }
 
         @Test(description = "Verify Down payment equals balance")
         public void TCM2() {
             accService = new accountServices(driver);
-            accService.loanTestScenario(100.0,100.0,0, true);
+            accService.loanTestScenario("100.0","100.0",0, "success");
         }
 
         @Test(description = "Verify Down payment is zero")
         public void TCM3() {
             accService = new accountServices(driver);
-            accService.loanTestScenario(100.0,0.0,0, true);
+            accService.loanTestScenario("100.0","0.0",0, "success");
         }
 
         @Test(description = "Verify Down payment equals exact balance")
         public void TCM4() {
             accService = new accountServices(driver);
             api = new apiPOM();
-            double balance = api.getAccountBalance(userName, passWord);
-            accService.loanTestScenario(balance,balance,0, true);
+            String balance = api.getAccountBalance(userName, passWord);
+            accService.loanTestScenario(balance,balance,0, "success");
         }
 
         @Test(description = "Verify Down payment exceeds balance")
         public void TCM5() {
             accService = new accountServices(driver);
             api = new apiPOM();
-            double balance = api.getAccountBalance(userName, passWord);
-            double excBalance = balance+10;
-            accService.loanTestScenario(balance,excBalance,0,false);
+            String balance = api.getAccountBalance(userName, passWord);
+            String excBalance = balance+10;
+            accService.loanTestScenario(balance,excBalance,0,"failed");
         }
 
         @Test(description = "Verify Down payment equal to loan but exceeds balance")
         public void TCM6() {
             accService = new accountServices(driver);
             api = new apiPOM();
-            double balance = api.getAccountBalance(userName, passWord);
-            double excBalance = balance+10;
-            accService.loanTestScenario(excBalance,excBalance,0,false);
+            String balance = api.getAccountBalance(userName, passWord);
+            String excBalance = balance+10;
+            accService.loanTestScenario(excBalance,excBalance,0,"failed");
         }
 
         @Test(description = "Verify Down payment is negative", enabled = false)
         public void TCM7() {
             accService = new accountServices(driver);
-            accService.loanTestScenario(100.0,-50.0,0,false);
+            accService.loanTestScenario("100.0","-50.0",0,"failed");
         }
-    //Verify Down payment contains characters
+
+        @Test(description = "Verify Down payment contains characters")
+        public void TCM8() {
+            accService = new accountServices(driver);
+            accService.loanTestScenario("100.0","@123%^",0,"error");
+        }
     //Verify Loan amount is missing
     //Verify Down payment is missing
     //Verify Down payment of $201 (over the balance)

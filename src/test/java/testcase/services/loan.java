@@ -26,7 +26,7 @@ public class loan extends baseE2Epage {
         apiPOM api = new apiPOM();
 
         // Just one line to get the balance
-        double balance = api.getAccountBalance(userName, passWord);
+        String balance = api.getAccountBalance(userName, passWord);
 
         // Now use the balance as needed
         System.out.println("Account balance: " + balance);

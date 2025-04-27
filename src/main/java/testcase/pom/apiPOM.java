@@ -1,8 +1,6 @@
 package testcase.pom;
 
-import io.restassured.path.json.JsonPath;
 import io.restassured.path.xml.XmlPath;
-import org.openqa.selenium.WebDriver;
 import testcase.base.baseAPI;
 import static io.restassured.RestAssured.*;
 
@@ -12,20 +10,20 @@ public class apiPOM extends baseAPI {
 
     // Add this inner class to hold account information
     public static class AccountInfo {
-        private int accountId;
-        private double balance;
+        private String accountId;
+        private String balance;
 
-        public AccountInfo(int accountId, double balance) {
+        public AccountInfo(String accountId, String balance) {
             this.accountId = accountId;
             this.balance = balance;
         }
 
         // Getters
-        public int getAccountId() {
+        public String getAccountId() {
             return accountId;
         }
 
-        public double getBalance() {
+        public String getBalance() {
             return balance;
         }
     }
@@ -58,14 +56,14 @@ public class apiPOM extends baseAPI {
                 .xmlPath();
 
         // Extract the customerId from the JSON response
-        int accountID = xmlPath.getInt("accounts.account.id");
-        double balance = xmlPath.getDouble("accounts.account.balance");
+        String accountID = xmlPath.getString("accounts.account.id");
+        String balance = xmlPath.getString("accounts.account.balance");
         System.out.println("Account ID: " + accountID);
         System.out.println("Balance: " + balance);
         return new AccountInfo(accountID, balance);
     }
 
-    public double getAccountBalance(String userName, String passWord) {
+    public String getAccountBalance(String userName, String passWord) {
         // Get customer ID first
         int customerId = getCustomer(userName, passWord);
 

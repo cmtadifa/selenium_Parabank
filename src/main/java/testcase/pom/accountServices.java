@@ -32,6 +32,7 @@ public class accountServices {
     private By loanApplyBtn = By.xpath("//input[@value='Apply Now']");
     private By successfullyLoanTxt = By.xpath("//p[contains(text(),'Congratulations, your loan has been approved.')]");
     private By failLoanTxt = By.xpath("//p[contains(text(),'You do not have sufficient funds for the given')]");
+    private By errorTxt = By.xpath("//p[contains(text(),'An internal error has occurred and has been logged.')]");
 
     public accountServices(WebDriver driver) {
         this.driver = driver;
@@ -66,11 +67,11 @@ public class accountServices {
         }
     }
 
-    public void inputLoanAmount(double loan){
+    public void inputLoanAmount(String loan){
         driver.findElement(loanAmount).sendKeys(String.valueOf(loan));
     }
 
-    public void inputDownPayment(double dpayment){
+    public void inputDownPayment(String dpayment){
         driver.findElement(loanDownAmount).sendKeys(String.valueOf(dpayment));
     }
 
@@ -98,16 +99,29 @@ public class accountServices {
         Assert.assertEquals(text,"You do not have sufficient funds for the given down payment.");
     }
 
+    public void error() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(errorTxt));
+        String text = element.getText();
+        Assert.assertEquals(text,"An internal error has occurred and has been logged.");
+    }
 
-    public void loanTestScenario(double loan, double dpayment, int index, boolean success ){
+
+    public void loanTestScenario(String loan, String dpayment, int index, String status ){
         inputLoanAmount(loan);
         inputDownPayment(dpayment);
         selectAccountNo(index);
         clickLoanBtn();
-        if (success) {
-            successLoan();
-        }else{
-            failedLoan();
+        switch (status) {
+            case "success":
+                successLoan();
+                break;
+            case "failed":
+                failedLoan();
+                break;
+            case "error":
+                error();
+                break;
         }
     }
 
