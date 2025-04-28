@@ -4,7 +4,6 @@ import org.testng.annotations.Test;
 import testcase.pom.accountServices;
 import testcase.base.loanbasepage;
 import testcase.pom.apiPOM;
-import testcase.pom.homepage;
 
 public class loanTest extends loanbasepage {
 
@@ -54,7 +53,7 @@ public class loanTest extends loanbasepage {
             accService.loanTestScenario(excBalance,excBalance,0,"failed");
         }
 
-        @Test(description = "Verify Down payment is negative", enabled = false)
+        @Test(description = "Verify Down payment is negative")
         public void TCM7() {
             accService = new accountServices(driver);
             accService.loanTestScenario("100.0","-50.0",0,"failed");
@@ -90,22 +89,14 @@ public class loanTest extends loanbasepage {
             accService.loanTestScenario("0","100.0",0,"error");
         }
 
-
-/*
-    @Test(description = "testing", dependsOnMethods = "navigate")
-    public void getCustomerID() {
-        apiPOM api = new apiPOM();
-        homepage homePage = new homepage(driver);
-        String passWord = homePage.getPassWord();
-        int customerId = api.getCustomer(userName, passWord);
-        apiPOM.AccountInfo accountInfo = api.getAccountID(customerId);
-        int accountId = accountInfo.getAccountId();
-        double balance = accountInfo.getBalance();
-
-    } */
-
-
-
-
+        @Test(description = "Verify Successfully Loan for 2nd Account")
+        public void TCM13() {
+            accService = new accountServices(driver);
+            api = new apiPOM();
+            String createAccount = api.postCreateAccount(userName, passWord, "checking");
+            System.out.println("Created account: " + createAccount);
+            driver.navigate().refresh();
+            accService.loanTestScenario("100.0","50.0",1,"success");
+        }
 
 }

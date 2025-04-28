@@ -63,6 +63,49 @@ public class apiPOM extends baseAPI {
         return new AccountInfo(accountID, balance);
     }
 
+    //create Account
+    public int postCreatenewAccount(int customerID, int accountType, int fromAccountId) {
+        XmlPath xmlPath = given()
+            .queryParam("customerId", customerID)
+            .queryParam("newAccountType", accountType)
+            .queryParam("fromAccountId", fromAccountId)
+        .when()
+            .post("/createAccount")
+        .then()
+            .statusCode(200)
+            .extract()
+            .xmlPath();
+
+        int newAccountId = xmlPath.getInt("account.id");
+        System.out.println("New Account ID: " + newAccountId);
+
+        return newAccountId;
+    }
+
+/* --------------------------------------------------------------------------------- */
+
+    public String postCreateAccount(String userName, String passWord, String accType) {
+        // Get customer ID first
+        int customerID = getCustomer(userName, passWord);
+        AccountInfo accountID = getAccountID(customerID);
+        int accountType = 0;
+            switch (accType.toLowerCase()) {
+                case "checking":
+                    accountType = 0;
+                    break;
+                case "savings":
+                    accountType = 1;
+                    break;
+                case "loan":
+                    accountType = 2;
+                    break;
+            }
+
+        int fromAccountId = Integer.parseInt(accountID.getAccountId());
+        int newAccount = postCreatenewAccount(customerID, accountType, fromAccountId);
+        return String.valueOf(newAccount);
+    }
+
     public String getAccountBalance(String userName, String passWord) {
         // Get customer ID first
         int customerId = getCustomer(userName, passWord);
