@@ -93,4 +93,40 @@ public class homepage {
         driver.findElement(liBtm).click();
     }
 
+
+    public class RegistrationData {
+        public String fName;
+        public String lName;
+        public String zipCode;
+        public String phone;
+        public String ssn;
+        public String userName;
+        public String passWord;
+        public String confPassWord;
+        public String expectedResult;
+    }
+    //Test Suite
+    public void registerTest(RegistrationData Data) throws InterruptedException {
+        driver.findElement(regFname).sendKeys(Data.fName);
+        driver.findElement(regLname).sendKeys(Data.lName);
+        driver.findElement(regStreet).sendKeys(street);
+        driver.findElement(regCity).sendKeys(city);
+        driver.findElement(regState).sendKeys(state);
+        driver.findElement(regZipcode).sendKeys(Data.zipCode);
+        driver.findElement(regPhone).sendKeys(Data.phone);
+        driver.findElement(regSsn).sendKeys(Data.ssn);
+        driver.findElement(regUsername).sendKeys(Data.userName);
+        driver.findElement(regPassword).sendKeys(Data.passWord);
+        driver.findElement(regConfPassword).sendKeys(Data.confPassWord);
+        Thread.sleep(1000);
+
+        driver.findElement(regBtn).click();
+        switch (Data.expectedResult) {
+            case "success":
+                Assert.assertEquals(driver.findElement(regSuccessfully).getText(),"Welcome "+Data.userName);
+                break;
+        }
+
+    }
+
 }
