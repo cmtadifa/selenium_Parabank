@@ -32,6 +32,17 @@ public class homepage {
     private By regBtn = By.xpath("//input[@value='Register']");
     private By regSuccessfully = By.className("title");
 
+    private By regFnameError = By.id("customer.firstName.errors");
+    private By regLnameError = By.id("customer.lastName.errors");
+    private By regAddressError = By.id("customer.address.street.errors");
+    private By regCityError = By.id("customer.address.city.errors");
+    private By regStateError = By.id("customer.address.state.errors");
+    private By regZipCodeError = By.id("customer.address.zipCode.errors");
+    private By regSsnError = By.id("customer.ssn.errors");
+    private By regUsernameError = By.id("customer.username.errors");
+    private By regPasswordError = By.id("customer.password.errors");
+    private By regConfPasswordError = By.id("repeatedPassword.errors");
+
     //login
     private By liUsername = By.xpath("//input[@name='username']");
     private By liPassword =  By.xpath("//input[@name='password']");
@@ -97,6 +108,9 @@ public class homepage {
     public class RegistrationData {
         public String fName;
         public String lName;
+        public String street;
+        public String city;
+        public String state;
         public String zipCode;
         public String phone;
         public String ssn;
@@ -109,9 +123,9 @@ public class homepage {
     public void registerTest(RegistrationData Data) throws InterruptedException {
         driver.findElement(regFname).sendKeys(Data.fName);
         driver.findElement(regLname).sendKeys(Data.lName);
-        driver.findElement(regStreet).sendKeys(street);
-        driver.findElement(regCity).sendKeys(city);
-        driver.findElement(regState).sendKeys(state);
+        driver.findElement(regStreet).sendKeys(Data.street != null ? Data.street : street);
+        driver.findElement(regCity).sendKeys(Data.city != null ? Data.city : city);
+        driver.findElement(regState).sendKeys(Data.state != null ? Data.state : state);
         driver.findElement(regZipcode).sendKeys(Data.zipCode);
         driver.findElement(regPhone).sendKeys(Data.phone);
         driver.findElement(regSsn).sendKeys(Data.ssn);
@@ -124,6 +138,9 @@ public class homepage {
         switch (Data.expectedResult) {
             case "success":
                 Assert.assertEquals(driver.findElement(regSuccessfully).getText(),"Welcome "+Data.userName);
+                break;
+            case "requiredFields":
+                Assert.assertTrue(driver.findElement(regFnameError).isDisplayed(), "First name is required.");
                 break;
         }
 

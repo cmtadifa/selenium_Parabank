@@ -15,7 +15,7 @@ public class accountRegistrationTest extends basepage {
     }
 
     @Test(description = "Verify successful registration with valid inputs")
-    public void registration() throws InterruptedException {
+    public void TCM1() throws InterruptedException {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
         data.fName = "John";
@@ -31,9 +31,28 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
+    @Test(description = "Verify registration with missing required fields")
+    public void TCM2() throws InterruptedException {
+        homepage homePage = new homepage(driver);
+        homepage.RegistrationData data = homePage.new RegistrationData();
+        data.fName = "";
+        data.lName = "";
+        data.street = "";
+        data.city = "";
+        data.state = "";
+        data.zipCode = "";
+        data.ssn = "";
+        data.phone = "";
+        data.userName = "";
+        data.passWord = "";
+        data.confPassWord = "";
+        data.expectedResult = "requiredFields";
+
+        homePage.registerTest(data);
+    }
     /*
 
-    Verify registration with missing required fields
+
     Verify password and confirm password mismatch
     Verify Zip Code field with invalid data
     Verify SSN field with invalid format
