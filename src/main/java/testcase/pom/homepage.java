@@ -121,17 +121,17 @@ public class homepage {
     }
     //Test Suite
     public void registerTest(RegistrationData Data) throws InterruptedException {
-        driver.findElement(regFname).sendKeys(Data.fName);
-        driver.findElement(regLname).sendKeys(Data.lName);
+        driver.findElement(regFname).sendKeys(Data.fName != null ? Data.fName : fName);
+        driver.findElement(regLname).sendKeys(Data.lName != null ? Data.lName : lName);
         driver.findElement(regStreet).sendKeys(Data.street != null ? Data.street : street);
         driver.findElement(regCity).sendKeys(Data.city != null ? Data.city : city);
         driver.findElement(regState).sendKeys(Data.state != null ? Data.state : state);
-        driver.findElement(regZipcode).sendKeys(Data.zipCode);
-        driver.findElement(regPhone).sendKeys(Data.phone);
-        driver.findElement(regSsn).sendKeys(Data.ssn);
-        driver.findElement(regUsername).sendKeys(Data.userName);
-        driver.findElement(regPassword).sendKeys(Data.passWord);
-        driver.findElement(regConfPassword).sendKeys(Data.confPassWord);
+        driver.findElement(regZipcode).sendKeys(Data.zipCode != null ? Data.zipCode : zipCode);
+        driver.findElement(regPhone).sendKeys(Data.phone != null ? Data.phone : phone);
+        driver.findElement(regSsn).sendKeys(Data.ssn != null ? Data.ssn : ssn);
+        driver.findElement(regUsername).sendKeys(Data.userName != null ? Data.userName : userName);
+        driver.findElement(regPassword).sendKeys(Data.passWord != null ? Data.passWord : passWord);
+        driver.findElement(regConfPassword).sendKeys(Data.confPassWord != null ? Data.confPassWord : confPassWord);
         Thread.sleep(1000);
 
         driver.findElement(regBtn).click();
