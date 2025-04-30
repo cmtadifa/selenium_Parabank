@@ -151,6 +151,9 @@ public class homepage {
                 Assert.assertTrue(driver.findElement(regPasswordError).isDisplayed(), "Password is required.");
                 Assert.assertTrue(driver.findElement(regConfPasswordError).isDisplayed(), "Password confirmation is required.");
                 break;
+            case "passMismatch":
+                Assert.assertTrue(driver.findElement(regConfPasswordError).isDisplayed(), "Passwords did not match.");
+                break;
         }
 
     }

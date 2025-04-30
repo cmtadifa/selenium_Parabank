@@ -50,10 +50,17 @@ public class accountRegistrationTest extends basepage {
 
         homePage.registerTest(data);
     }
+
+    @Test(description = "Verify password and confirm password mismatch")
+    public void TCM3() throws InterruptedException {
+        homepage homePage = new homepage(driver);
+        homepage.RegistrationData data = homePage.new RegistrationData();
+        data.confPassWord = "parabankTest1";
+        data.expectedResult = "passMismatch";
+
+        homePage.registerTest(data);
+    }
     /*
-
-
-    Verify password and confirm password mismatch
     Verify Zip Code field with invalid data
     Verify SSN field with invalid format
     Verify phone number field with invalid input
