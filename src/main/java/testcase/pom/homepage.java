@@ -141,6 +141,15 @@ public class homepage {
                 break;
             case "requiredFields":
                 Assert.assertTrue(driver.findElement(regFnameError).isDisplayed(), "First name is required.");
+                Assert.assertTrue(driver.findElement(regLnameError).isDisplayed(), "Last name is required.");
+                Assert.assertTrue(driver.findElement(regAddressError).isDisplayed(), "Address is required.");
+                Assert.assertTrue(driver.findElement(regCityError).isDisplayed(), "City is required.");
+                Assert.assertTrue(driver.findElement(regStateError).isDisplayed(), "State is required.");
+                Assert.assertTrue(driver.findElement(regZipCodeError).isDisplayed(), "Zip Code is required.");
+                Assert.assertTrue(driver.findElement(regSsnError).isDisplayed(), "Social Security Number is required.");
+                Assert.assertTrue(driver.findElement(regUsernameError).isDisplayed(), "Username is required.");
+                Assert.assertTrue(driver.findElement(regPasswordError).isDisplayed(), "Password is required.");
+                Assert.assertTrue(driver.findElement(regConfPasswordError).isDisplayed(), "Password confirmation is required.");
                 break;
         }
 
