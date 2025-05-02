@@ -184,6 +184,10 @@ public class homepage {
                 Assert.assertEquals(driver.findElement(regConfPasswordError).getText(),"Password confirmation is required.");
                 break;
             case "invalidCity":
+                Assert.assertTrue(driver.findElement(regAddressError).isDisplayed(), "Address is invalid.");
+                Assert.assertEquals(driver.findElement(regAddressError).getText(),"Address is invalid.");
+                Assert.assertTrue(driver.findElement(regStateError).isDisplayed(), "State is invalid.");
+                Assert.assertEquals(driver.findElement(regStateError).getText(),"State is invalid.");
                 Assert.assertTrue(driver.findElement(regCityError).isDisplayed(), "City is invalid.");
                 Assert.assertEquals(driver.findElement(regCityError).getText(),"City is invalid.");
                 break;
