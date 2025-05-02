@@ -131,6 +131,16 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
+    @Test(description = "Verify form with blank Confirm password fields") //failed due to existing issue on no restriction
+    public void TCM11() throws InterruptedException {
+        homepage homePage = new homepage(driver);
+        homepage.RegistrationData data = homePage.new RegistrationData();
+        data.confPassWord = "";
+        data.expectedResult = "confPassWordMissing";
+
+        homePage.registerTest(data);
+    }
+
 
     /*
 
