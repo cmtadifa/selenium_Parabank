@@ -111,9 +111,19 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
+    @Test(description = "Verify form with blank username fields") //failed due to existing issue on no restriction
+    public void TCM9() throws InterruptedException {
+        homepage homePage = new homepage(driver);
+        homepage.RegistrationData data = homePage.new RegistrationData();
+        data.userName = "";
+        data.expectedResult = "userNameMissing";
+
+        homePage.registerTest(data);
+    }
+
 
     /*
-    Verify form with blank password fields
+
     Verify field limits for input fields
     Verify registration with special characters in address fields
     Verify form reset behavior
