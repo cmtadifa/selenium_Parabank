@@ -175,7 +175,10 @@ public class homepage {
                 Assert.assertTrue(driver.findElement(regUsernameError).isDisplayed(), "Username is required.");
                 Assert.assertEquals(driver.findElement(regUsernameError).getText(),"Username is required.");
                 break;
-
+            case "passWordMissing":
+                Assert.assertTrue(driver.findElement(regPasswordError).isDisplayed(), "Password is required.");
+                Assert.assertEquals(driver.findElement(regPasswordError).getText(),"Password is required.");
+                break;
         }
 
     }
