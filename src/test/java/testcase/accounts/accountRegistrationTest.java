@@ -80,10 +80,18 @@ public class accountRegistrationTest extends basepage {
 
         homePage.registerTest(data);
     }
+
+    @Test(description = "Verify phone number field with invalid input")
+    public void TCM6() throws InterruptedException {
+        homepage homePage = new homepage(driver);
+        homepage.RegistrationData data = homePage.new RegistrationData();
+        data.phone = "randomnumber0123";
+        data.expectedResult = "";
+
+        homePage.registerTest(data);
+    }
     /*
 
-
-    Verify phone number field with invalid input
     Verify registration with existing username
     Verify username field accepts alphanumeric only
     Verify form with blank password fields
