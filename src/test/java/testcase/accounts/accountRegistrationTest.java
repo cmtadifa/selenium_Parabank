@@ -100,10 +100,19 @@ public class accountRegistrationTest extends basepage {
 
         homePage.registerTest(data);
     }
+
+    @Test(description = "Verify username field accepts alphanumeric only") //failed due to existing issue on no restriction
+    public void TCM8() throws InterruptedException {
+        homepage homePage = new homepage(driver);
+        homepage.RegistrationData data = homePage.new RegistrationData();
+        data.userName = "admin123!@#$%";
+        data.expectedResult = "userNameInvalid";
+
+        homePage.registerTest(data);
+    }
+
+
     /*
-
-
-    Verify username field accepts alphanumeric only
     Verify form with blank password fields
     Verify field limits for input fields
     Verify registration with special characters in address fields

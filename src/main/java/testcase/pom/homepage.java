@@ -167,6 +167,10 @@ public class homepage {
                 Assert.assertTrue(driver.findElement(regUsernameError).isDisplayed(), "This username already exists.");
                 Assert.assertEquals(driver.findElement(regUsernameError).getText(),"This username already exists.");
                 break;
+            case "userNameInvalid":
+                Assert.assertTrue(driver.findElement(regUsernameError).isDisplayed(), "Invalid Username.");
+                Assert.assertEquals(driver.findElement(regUsernameError).getText(),"Invalid Username.");
+                break;
         }
 
     }
