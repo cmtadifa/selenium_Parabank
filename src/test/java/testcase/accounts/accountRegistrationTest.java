@@ -111,7 +111,7 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
-    @Test(description = "Verify form with blank username fields") //failed due to existing issue on no restriction
+    @Test(description = "Verify form with blank username fields")
     public void TCM9() throws InterruptedException {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
@@ -121,7 +121,7 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
-    @Test(description = "Verify form with blank password fields") //failed due to existing issue on no restriction
+    @Test(description = "Verify form with blank password fields")
     public void TCM10() throws InterruptedException {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
@@ -131,7 +131,7 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
-    @Test(description = "Verify form with blank Confirm password fields") //failed due to existing issue on no restriction
+    @Test(description = "Verify form with blank Confirm password fields")
     public void TCM11() throws InterruptedException {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
