@@ -141,10 +141,18 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
+    @Test(description = "Verify field limits for Username field") //should be failed due to wrong username error
+    public void TCM12() throws InterruptedException {
+        homepage homePage = new homepage(driver);
+        homepage.RegistrationData data = homePage.new RegistrationData();
+        data.userName = "Pneumonoultramicroscopicsilicovolcanoconiosis";
+        data.expectedResult = "userNameInvalid";
 
+        homePage.registerTest(data);
+    }
     /*
 
-    Verify field limits for input fields
+
     Verify registration with special characters in address fields
     Verify form reset behavior
     Check tab order navigation
