@@ -150,10 +150,20 @@ public class accountRegistrationTest extends basepage {
 
         homePage.registerTest(data);
     }
+
+    @Test(description = "Verify registration with special characters in address fields") //failed due to wrong city error
+    public void TCM13() throws InterruptedException {
+        homepage homePage = new homepage(driver);
+        homepage.RegistrationData data = homePage.new RegistrationData();
+        data.city = "L0$ @n63L3$";
+        data.expectedResult = "invalidCity";
+
+        homePage.registerTest(data);
+    }
     /*
 
 
-    Verify registration with special characters in address fields
+
     Verify form reset behavior
     Check tab order navigation
      */
