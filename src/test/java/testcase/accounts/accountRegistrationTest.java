@@ -61,7 +61,7 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
-    @Test(description = "Verify Zip Code field with invalid data")
+    @Test(description = "Verify Zip Code field with invalid data") //failed due to existing issue on error field
     public void TCM4() throws InterruptedException {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
@@ -71,7 +71,7 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
-    @Test(description = "Verify SSN field with invalid format")
+    @Test(description = "Verify SSN field with invalid format") //failed due to existing issue on error field
     public void TCM5() throws InterruptedException {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
@@ -81,7 +81,7 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
-    @Test(description = "Verify phone number field with invalid input")
+    @Test(description = "Verify phone number field with invalid input") //failed due to existing issue on no restriction
     public void TCM6() throws InterruptedException {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
