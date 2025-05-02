@@ -81,7 +81,7 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
-    @Test(description = "Verify phone number field with invalid input") //failed due to existing issue on no restriction
+    @Test(description = "Verify phone number field with invalid input") //Invalid due to existing issue on no restriction
     public void TCM6() throws InterruptedException {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
