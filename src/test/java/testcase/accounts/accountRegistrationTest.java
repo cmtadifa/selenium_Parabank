@@ -61,7 +61,7 @@ public class accountRegistrationTest extends basepage {
         homePage.registerTest(data);
     }
 
-    @Test(description = "Verify Zip Code field with invalid data", enabled = false)
+    @Test(description = "Verify Zip Code field with invalid data")
     public void TCM4() throws InterruptedException {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
@@ -70,9 +70,19 @@ public class accountRegistrationTest extends basepage {
 
         homePage.registerTest(data);
     }
+
+    @Test(description = "Verify SSN field with invalid format")
+    public void TCM5() throws InterruptedException {
+        homepage homePage = new homepage(driver);
+        homepage.RegistrationData data = homePage.new RegistrationData();
+        data.ssn = "@randomSSn123";
+        data.expectedResult = "ssn";
+
+        homePage.registerTest(data);
+    }
     /*
 
-    Verify SSN field with invalid format
+
     Verify phone number field with invalid input
     Verify registration with existing username
     Verify username field accepts alphanumeric only

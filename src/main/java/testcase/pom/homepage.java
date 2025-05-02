@@ -155,7 +155,11 @@ public class homepage {
                 Assert.assertTrue(driver.findElement(regConfPasswordError).isDisplayed(), "Passwords did not match.");
                 break;
             case "zipcode":
-                Assert.assertTrue(driver.findElement(regConfPasswordError).isDisplayed(), "ZIP code is incorrect.");
+                Assert.assertTrue(driver.findElement(regZipCodeError).isDisplayed(), "ZIP code is invalid.");
+                break;
+            case "ssn":
+                Assert.assertTrue(driver.findElement(regSsnError).isDisplayed(), "Ssn is invalid.");
+                break;
         }
 
     }
