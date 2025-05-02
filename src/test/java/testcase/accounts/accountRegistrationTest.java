@@ -90,9 +90,19 @@ public class accountRegistrationTest extends basepage {
 
         homePage.registerTest(data);
     }
+
+    @Test(description = "Verify registration with existing username") //need to manually create account for this, since the page is public and can clear all the created account
+    public void TCM7() throws InterruptedException {
+        homepage homePage = new homepage(driver);
+        homepage.RegistrationData data = homePage.new RegistrationData();
+        data.userName = "admin";
+        data.expectedResult = "userNameExist";
+
+        homePage.registerTest(data);
+    }
     /*
 
-    Verify registration with existing username
+
     Verify username field accepts alphanumeric only
     Verify form with blank password fields
     Verify field limits for input fields

@@ -153,12 +153,19 @@ public class homepage {
                 break;
             case "passMismatch":
                 Assert.assertTrue(driver.findElement(regConfPasswordError).isDisplayed(), "Passwords did not match.");
+                Assert.assertEquals(driver.findElement(regConfPasswordError).getText(),"Passwords did not match.");
                 break;
             case "zipcode":
                 Assert.assertTrue(driver.findElement(regZipCodeError).isDisplayed(), "ZIP code is invalid.");
+                Assert.assertEquals(driver.findElement(regSsnError).getText(),"ZIP code is invalid.");
                 break;
             case "ssn":
                 Assert.assertTrue(driver.findElement(regSsnError).isDisplayed(), "Ssn is invalid.");
+                Assert.assertEquals(driver.findElement(regSsnError).getText(),"Ssn is invalid.");
+                break;
+            case "userNameExist":
+                Assert.assertTrue(driver.findElement(regUsernameError).isDisplayed(), "This username already exists.");
+                Assert.assertEquals(driver.findElement(regUsernameError).getText(),"This username already exists.");
                 break;
         }
 
