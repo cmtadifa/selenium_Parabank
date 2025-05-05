@@ -162,11 +162,4 @@ public class accountRegistrationTest extends basepage {
 
         homePage.registerTest(data);
     }
-
-
-    /*
-    Verify form reset behavior
-    Check tab order navigation
-     */
-
 }

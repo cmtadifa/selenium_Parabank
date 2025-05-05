@@ -192,7 +192,6 @@ public class homepage {
                 Assert.assertEquals(driver.findElement(regCityError).getText(),"City is invalid.");
                 break;
         }
-
     }
 
 }
