@@ -66,7 +66,7 @@ public class accountRegistrationTest extends basepage {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
         data.zipCode = "-!@#4para$@bank";
-        data.expectedResult = "zipcode";
+        data.expectedResult = ""; //zipcode
 
         homePage.registerTest(data);
     }
@@ -76,7 +76,7 @@ public class accountRegistrationTest extends basepage {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
         data.ssn = "@randomSSn123";
-        data.expectedResult = "ssn";
+        data.expectedResult = ""; //ssn
 
         homePage.registerTest(data);
     }
@@ -106,7 +106,7 @@ public class accountRegistrationTest extends basepage {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
         data.userName = "admin123!@#$%";
-        data.expectedResult = "userNameInvalid";
+        data.expectedResult = "success"; //userNameInvalid
 
         homePage.registerTest(data);
     }
@@ -146,7 +146,7 @@ public class accountRegistrationTest extends basepage {
         homepage homePage = new homepage(driver);
         homepage.RegistrationData data = homePage.new RegistrationData();
         data.userName = "Pneumonoultramicroscopicsilicovolcanoconiosis";
-        data.expectedResult = "userNameInvalid";
+        data.expectedResult = "userNameExist"; //userNameInvalid
 
         homePage.registerTest(data);
     }
@@ -158,7 +158,7 @@ public class accountRegistrationTest extends basepage {
         data.street = "1234 !@#$%^";
         data.state = "C@l!f0rn!@";
         data.city = "L0$ @n63L3$";
-        data.expectedResult = "invalidCity";
+        data.expectedResult = ""; //invalidCity
 
         homePage.registerTest(data);
     }

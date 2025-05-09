@@ -74,6 +74,34 @@ public class homepage {
         return passWord;
     }
 
+    public String getfName() {
+        return fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
     public void clickRegister() {
         driver.findElement(registerLink).click();
     }

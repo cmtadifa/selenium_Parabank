@@ -34,6 +34,19 @@ public class accountServices {
     private By failLoanTxt = By.xpath("//p[contains(text(),'You do not have sufficient funds for the given')]");
     private By errorTxt = By.xpath("//p[contains(text(),'An internal error has occurred and has been logged.')]");
 
+    //billpay
+    private By billPayeeName = By.xpath("//input[@name='payee.name']");
+    private By billAddress = By.xpath("//input[@name='payee.address.street']");
+    private By billCity = By.xpath("//input[@name='payee.address.city']");
+    private By billState = By.xpath("//input[@name='payee.address.state']");
+    private By billZipCode = By.xpath("//input[@name='payee.address.zipCode']");
+    private By billPhoneNo = By.xpath("//input[@name='payee.phoneNumber']");
+    private By billAccountNo = By.xpath("//input[@name='payee.accountNumber']");
+    private By billVAccountNo = By.xpath("//input[@name='verifyAccount']");
+    private By billAmount = By.xpath("//input[@name='amount']");
+
+
+
     public accountServices(WebDriver driver) {
         this.driver = driver;
     }
@@ -106,7 +119,6 @@ public class accountServices {
         Assert.assertEquals(text,"An internal error has occurred and has been logged.");
     }
 
-
     public void loanTestScenario(String loan, String dpayment, int index, String status ){
         inputLoanAmount(loan);
         inputDownPayment(dpayment);
@@ -123,6 +135,32 @@ public class accountServices {
                 error();
                 break;
         }
+    }
+
+    //bill pay
+
+    public class pInfoData {
+        public String payeeName;
+        public String street;
+        public String city;
+        public String state;
+        public String zipCode;
+        public String phone;
+        public String accno;
+        public String vaccno;
+        public String amount;
+    }
+
+    public void payeeInfo(pInfoData Data) {
+        driver.findElement(billPayeeName).sendKeys(Data.payeeName);
+        driver.findElement(billAddress).sendKeys(Data.street);
+        driver.findElement(billCity).sendKeys(Data.city);
+        driver.findElement(billState).sendKeys(Data.state);
+        driver.findElement(billZipCode).sendKeys(Data.zipCode);
+        driver.findElement(billPhoneNo).sendKeys(Data.phone);
+        driver.findElement(billAccountNo).sendKeys(Data.accno);
+        driver.findElement(billVAccountNo).sendKeys(Data.vaccno);
+        driver.findElement(billAmount).sendKeys(Data.amount);
     }
 
 
