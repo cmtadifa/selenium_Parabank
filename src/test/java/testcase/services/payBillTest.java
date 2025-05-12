@@ -2,15 +2,18 @@ package testcase.services;
 import org.testng.annotations.Test;
 import testcase.base.paybillbasepage;
 import testcase.pom.accountServices;
+import testcase.pom.apiPOM;
 import testcase.pom.homepage;
 
 
 public class payBillTest extends paybillbasepage{
 
     accountServices accService;
+    apiPOM api;
     @Test(description = "Verify successful bill payment with all valid data")
     public void TCM1() {
         accService = new accountServices(driver);
+        api = new apiPOM();
         accountServices.pInfoData data = accService.new pInfoData();
         data.payeeName = fullName;
         data.street = street;
@@ -22,8 +25,12 @@ public class payBillTest extends paybillbasepage{
         data.vaccno = "123";
         data.amount = "123";
 
+        String balance = api.getAccountBalance(userName, passWord);
 
-        accService.payeeInfo(data);
+        accService.payeeInfo(data, 0);
+        accService.clickSendPayment();
+        accService.checkBalance(userName, passWord, balance, data);
+
     }
 }
 

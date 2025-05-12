@@ -44,6 +44,9 @@ public class accountServices {
     private By billAccountNo = By.xpath("//input[@name='payee.accountNumber']");
     private By billVAccountNo = By.xpath("//input[@name='verifyAccount']");
     private By billAmount = By.xpath("//input[@name='amount']");
+    private By billPayAccountNo = By.xpath("//select[@name='fromAccountId']");
+    private By sendPaymentBtn = By.xpath("//input[@value='Send Payment']");
+
 
 
 
@@ -139,6 +142,12 @@ public class accountServices {
 
     //bill pay
 
+    public void selectBillccountNo(int index){
+        WebElement dropdown = driver.findElement(billPayAccountNo);
+        Select accNoDropdown = new Select(dropdown);
+        accNoDropdown.selectByIndex(index);
+    }
+
     public class pInfoData {
         public String payeeName;
         public String street;
@@ -148,10 +157,10 @@ public class accountServices {
         public String phone;
         public String accno;
         public String vaccno;
-        public String amount;
+        public String amount = "100";
     }
 
-    public void payeeInfo(pInfoData Data) {
+    public void payeeInfo(pInfoData Data, int index) {
         driver.findElement(billPayeeName).sendKeys(Data.payeeName);
         driver.findElement(billAddress).sendKeys(Data.street);
         driver.findElement(billCity).sendKeys(Data.city);
@@ -160,9 +169,26 @@ public class accountServices {
         driver.findElement(billPhoneNo).sendKeys(Data.phone);
         driver.findElement(billAccountNo).sendKeys(Data.accno);
         driver.findElement(billVAccountNo).sendKeys(Data.vaccno);
+
         driver.findElement(billAmount).sendKeys(Data.amount);
+
+        selectBillccountNo(index);
     }
 
+    public void clickSendPayment() {
+        driver.findElement(sendPaymentBtn).click();
+    }
 
+    public void checkBalance(String userName, String passWord, String oldBal, pInfoData Data) {
+        apiPOM api;
+        api = new apiPOM();
+
+        double balance = Double.parseDouble(api.getAccountBalance(userName, passWord));
+        double oldBalance = Double.parseDouble(oldBal);
+        double amount = Double.parseDouble(Data.amount);
+        double fBalance = oldBalance - amount;
+        Assert.assertEquals(balance, fBalance);
+
+    }
 
 }

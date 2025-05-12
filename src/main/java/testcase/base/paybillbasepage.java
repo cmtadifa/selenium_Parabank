@@ -12,7 +12,7 @@ import java.time.Duration;
 
 public class paybillbasepage {
     protected WebDriver driver;
-    public String fullName, street, city, state, zipcode, phone;
+    public String fullName, street, city, state, zipcode, phone, userName, passWord;
     @BeforeMethod
     public void setup() throws InterruptedException {
         driver = new ChromeDriver();
@@ -25,6 +25,8 @@ public class paybillbasepage {
         homePage.clickRegister();
         homePage.register();
 
+        this.userName = homePage.getUserName();
+        this.passWord = homePage.getPassWord();
         this.fullName = homePage.getfName()+" "+homePage.getlName();
         this.street = homePage.getStreet();
         this.city = homePage.getCity();
