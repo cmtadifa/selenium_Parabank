@@ -47,7 +47,7 @@ public class accountServices {
     private By billPayAccountNo = By.xpath("//select[@name='fromAccountId']");
     private By sendPaymentBtn = By.xpath("//input[@value='Send Payment']");
 
-
+    private By billErrorEmptyAmount = By.id("validationModel-amount-empty");
 
 
     public accountServices(WebDriver driver) {
@@ -188,7 +188,10 @@ public class accountServices {
         double amount = Double.parseDouble(Data.amount);
         double fBalance = oldBalance - amount;
         Assert.assertEquals(balance, fBalance);
+    }
 
+    public void emptyField(){
+        Assert.assertTrue(driver.findElement(billErrorEmptyAmount).isDisplayed(), "The amount cannot be empty.");
     }
 
 }
