@@ -49,13 +49,31 @@ public class payBillTest extends paybillbasepage{
 
         accService.payeeInfo(data, 0);
         accService.clickSendPayment();
-        accService.emptyField();
+        accService.errorEmptyField("amountFields");
+    }
+
+    @Test(description = "Verify bill payment fails when ALL fields are left empty")
+    public void TCM3() {
+        accService = new accountServices(driver);
+        api = new apiPOM();
+        accountServices.pInfoData data = accService.new pInfoData();
+        data.payeeName = "";
+        data.street = "";
+        data.city = "";
+        data.state = "";
+        data.zipCode = "";
+        data.phone = "";
+        data.accno = "";
+        data.vaccno = "";
+        data.amount = "";
+
+        accService.payeeInfo(data, 0);
+        accService.clickSendPayment();
+        accService.errorEmptyField("allFields");
     }
 }
 
 /*
-
-
     Verify that only numeric values are allowed in “Amount” field
     Verify proper format validation for zip code
     Verify successful payment to loan account

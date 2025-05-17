@@ -47,6 +47,14 @@ public class accountServices {
     private By billPayAccountNo = By.xpath("//select[@name='fromAccountId']");
     private By sendPaymentBtn = By.xpath("//input[@value='Send Payment']");
 
+    private By billErrorEmptyPayee = By.id("validationModel-name");
+    private By billErrorEmptyAddress = By.id("validationModel-address");
+    private By billErrorEmptyCity = By.id("validationModel-city");
+    private By billErrorEmptyState = By.id("validationModel-state");
+    private By billErrorEmptyZipcode = By.id("validationModel-zipCode");
+    private By billErrorEmptyPhone = By.id("validationModel-phoneNumber");
+    private By billErrorEmptyAcc = By.id("validationModel-account-empty");
+    private By billErrorEmptyVAcc = By.id("validationModel-verifyAccount-empty");
     private By billErrorEmptyAmount = By.id("validationModel-amount-empty");
 
 
@@ -141,7 +149,6 @@ public class accountServices {
     }
 
     //bill pay
-
     public void selectBillccountNo(int index){
         WebElement dropdown = driver.findElement(billPayAccountNo);
         Select accNoDropdown = new Select(dropdown);
@@ -190,8 +197,26 @@ public class accountServices {
         Assert.assertEquals(balance, fBalance);
     }
 
-    public void emptyField(){
-        Assert.assertTrue(driver.findElement(billErrorEmptyAmount).isDisplayed(), "The amount cannot be empty.");
+    public void errorEmptyField(String error){
+        switch (error) {
+            case "allFields":
+                Assert.assertTrue(driver.findElement(billErrorEmptyPayee).isDisplayed(), "Payee name is required.");
+                Assert.assertTrue(driver.findElement(billErrorEmptyAddress).isDisplayed(), "Address is required.");
+                Assert.assertTrue(driver.findElement(billErrorEmptyCity).isDisplayed(), "City is required.");
+                Assert.assertTrue(driver.findElement(billErrorEmptyState).isDisplayed(), "State is required.");
+                Assert.assertTrue(driver.findElement(billErrorEmptyZipcode).isDisplayed(), "Zip Code is required.");
+                Assert.assertTrue(driver.findElement(billErrorEmptyPhone).isDisplayed(), "Phone number is required.");
+                Assert.assertTrue(driver.findElement(billErrorEmptyAcc).isDisplayed(), "Account number is required.");
+                Assert.assertTrue(driver.findElement(billErrorEmptyVAcc).isDisplayed(), "Account number is required.");
+                Assert.assertTrue(driver.findElement(billErrorEmptyAmount).isDisplayed(), "The amount cannot be empty.");
+                break;
+            case "amountFields":
+                Assert.assertTrue(driver.findElement(billErrorEmptyAmount).isDisplayed(), "The amount cannot be empty.");
+                break;
+
+        }
     }
+
+
 
 }
