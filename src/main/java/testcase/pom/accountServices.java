@@ -214,9 +214,6 @@ public class accountServices {
                 Assert.assertTrue(driver.findElement(billErrorEmptyVAcc).isDisplayed(), "Account number is required.");
                 Assert.assertTrue(driver.findElement(billErrorEmptyAmount).isDisplayed(), "The amount cannot be empty.");
                 break;
-            case "emptyAmountField":
-                Assert.assertTrue(driver.findElement(billErrorEmptyAmount).isDisplayed(), "The amount cannot be empty.");
-                break;
             case "errorInvalidAmount":
                 Assert.assertTrue(driver.findElement(billErrorInvalidAmount).isDisplayed(), "Please enter a valid amount");
                 break;

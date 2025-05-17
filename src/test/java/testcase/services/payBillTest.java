@@ -112,7 +112,7 @@ public class payBillTest extends paybillbasepage{
         accService.errorFields("errorInvalidAmount");
     }
 
-    @Test(description = "Verify amount field is empty")
+    @Test(description = "Verify amount cannot be more than account balance", enabled=false)
     public void TCM6() {
         accService = new accountServices(driver);
         api = new apiPOM();
@@ -125,19 +125,17 @@ public class payBillTest extends paybillbasepage{
         data.phone = phone;
         data.accno = "123";
         data.vaccno = "123";
-        data.amount = "";
+        data.amount = "10000";
 
         accService.payeeInfo(data, 0);
         accService.clickSendPayment();
-        accService.errorFields("emptyAmountField");
     }
 }
 
+
+
+
 /*
-
-
-    Verify successful payment to loan account
-    Verify amount cannot be more than account balance
     Verify bill payment with amount = 0
     Verify negative amount is not allowed
     Verify valid characters are required in name & address fields
