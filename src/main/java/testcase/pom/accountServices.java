@@ -56,6 +56,7 @@ public class accountServices {
     private By billErrorEmptyAcc = By.id("validationModel-account-empty");
     private By billErrorEmptyVAcc = By.id("validationModel-verifyAccount-empty");
     private By billErrorEmptyAmount = By.id("validationModel-amount-empty");
+    private By billErrorInvalidAmount = By.id("validationModel-amount-invalid");
 
 
     public accountServices(WebDriver driver) {
@@ -199,7 +200,7 @@ public class accountServices {
 
     public void errorEmptyField(String error){
         switch (error) {
-            case "allFields":
+            case "emptyAllFields":
                 Assert.assertTrue(driver.findElement(billErrorEmptyPayee).isDisplayed(), "Payee name is required.");
                 Assert.assertTrue(driver.findElement(billErrorEmptyAddress).isDisplayed(), "Address is required.");
                 Assert.assertTrue(driver.findElement(billErrorEmptyCity).isDisplayed(), "City is required.");
@@ -210,8 +211,11 @@ public class accountServices {
                 Assert.assertTrue(driver.findElement(billErrorEmptyVAcc).isDisplayed(), "Account number is required.");
                 Assert.assertTrue(driver.findElement(billErrorEmptyAmount).isDisplayed(), "The amount cannot be empty.");
                 break;
-            case "amountFields":
+            case "emptyAmountField":
                 Assert.assertTrue(driver.findElement(billErrorEmptyAmount).isDisplayed(), "The amount cannot be empty.");
+                break;
+            case "errorInvalidAmount":
+                Assert.assertTrue(driver.findElement(billErrorInvalidAmount).isDisplayed(), "Please enter a valid amount");
                 break;
 
         }
