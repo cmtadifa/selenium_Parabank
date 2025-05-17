@@ -32,7 +32,7 @@ public class payBillTest extends paybillbasepage{
         accService.checkBalance(userName, passWord, balance, data);
     }
 
-    @Test(description = "Verify bill payment fails when amount fields are left empty")
+    @Test(description = "Verify amount field is empty")
     public void TCM2() {
         accService = new accountServices(driver);
         api = new apiPOM();
@@ -49,10 +49,10 @@ public class payBillTest extends paybillbasepage{
 
         accService.payeeInfo(data, 0);
         accService.clickSendPayment();
-        accService.errorEmptyField("emptyAmountField");
+        accService.errorFields("emptyAmountField");
     }
 
-    @Test(description = "Verify bill payment fails when ALL fields are left empty")
+    @Test(description = "Verify All fields are  empty")
     public void TCM3() {
         accService = new accountServices(driver);
         api = new apiPOM();
@@ -69,10 +69,10 @@ public class payBillTest extends paybillbasepage{
 
         accService.payeeInfo(data, 0);
         accService.clickSendPayment();
-        accService.errorEmptyField("emptyAllFields");
+        accService.errorFields("emptyAllFields");
     }
 
-    @Test(description = "Verify that only numeric values are allowed in “Amount” field")
+    @Test(description = "Verify invalid values in Amount field")
     public void TCM4() {
         accService = new accountServices(driver);
         api = new apiPOM();
@@ -89,14 +89,34 @@ public class payBillTest extends paybillbasepage{
 
         accService.payeeInfo(data, 0);
         accService.clickSendPayment();
-        accService.errorEmptyField("errorInvalidAmount");
+        accService.errorFields("errorInvalidAmount");
+    }
+
+    @Test(description = "Verify invalid values in Account number field")
+    public void TCM5() {
+        accService = new accountServices(driver);
+        api = new apiPOM();
+        accountServices.pInfoData data = accService.new pInfoData();
+        data.payeeName = fullName;
+        data.street = street;
+        data.city = city;
+        data.state = state;
+        data.zipCode = zipcode;
+        data.phone = phone;
+        data.accno = "this is for testing 123";
+        data.vaccno = "this is for testing 123";
+        data.amount = "123";
+
+        accService.payeeInfo(data, 0);
+        accService.clickSendPayment();
+        accService.errorFields("errorInvalidAccNumber");
     }
 
 }
 
 /*
 
-    Verify proper format validation for zip code
+
     Verify successful payment to loan account
     Verify amount cannot be more than account balance
     Verify bill payment with amount = 0

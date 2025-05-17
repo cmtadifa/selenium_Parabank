@@ -54,7 +54,9 @@ public class accountServices {
     private By billErrorEmptyZipcode = By.id("validationModel-zipCode");
     private By billErrorEmptyPhone = By.id("validationModel-phoneNumber");
     private By billErrorEmptyAcc = By.id("validationModel-account-empty");
+    private By billErrorInvalidAcc = By.id("validationModel-account-invalid");
     private By billErrorEmptyVAcc = By.id("validationModel-verifyAccount-empty");
+    private By billErrorInvalidVAcc = By.id("validationModel-verifyAccount-invalid");
     private By billErrorEmptyAmount = By.id("validationModel-amount-empty");
     private By billErrorInvalidAmount = By.id("validationModel-amount-invalid");
 
@@ -198,7 +200,7 @@ public class accountServices {
         Assert.assertEquals(balance, fBalance);
     }
 
-    public void errorEmptyField(String error){
+    public void errorFields(String error){
         switch (error) {
             case "emptyAllFields":
                 Assert.assertTrue(driver.findElement(billErrorEmptyPayee).isDisplayed(), "Payee name is required.");
@@ -216,6 +218,10 @@ public class accountServices {
                 break;
             case "errorInvalidAmount":
                 Assert.assertTrue(driver.findElement(billErrorInvalidAmount).isDisplayed(), "Please enter a valid amount");
+                break;
+            case "errorInvalidAccNumber":
+                Assert.assertTrue(driver.findElement(billErrorInvalidAcc).isDisplayed(), "Please enter a valid number.");
+                Assert.assertTrue(driver.findElement(billErrorInvalidVAcc).isDisplayed(), "Please enter a valid number.");
                 break;
 
         }
