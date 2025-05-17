@@ -57,6 +57,7 @@ public class accountServices {
     private By billErrorInvalidAcc = By.id("validationModel-account-invalid");
     private By billErrorEmptyVAcc = By.id("validationModel-verifyAccount-empty");
     private By billErrorInvalidVAcc = By.id("validationModel-verifyAccount-invalid");
+    private By billErrorMismatchVAcc = By.id("validationModel-verifyAccount-mismatch");
     private By billErrorEmptyAmount = By.id("validationModel-amount-empty");
     private By billErrorInvalidAmount = By.id("validationModel-amount-invalid");
 
@@ -222,6 +223,9 @@ public class accountServices {
             case "errorInvalidAccNumber":
                 Assert.assertTrue(driver.findElement(billErrorInvalidAcc).isDisplayed(), "Please enter a valid number.");
                 Assert.assertTrue(driver.findElement(billErrorInvalidVAcc).isDisplayed(), "Please enter a valid number.");
+                break;
+            case "errorMismatchAccNumber":
+                Assert.assertTrue(driver.findElement(billErrorMismatchVAcc).isDisplayed(), "The account numbers do not match.");
                 break;
 
         }
