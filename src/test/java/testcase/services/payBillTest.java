@@ -32,28 +32,8 @@ public class payBillTest extends paybillbasepage{
         accService.checkBalance(userName, passWord, balance, data);
     }
 
-    @Test(description = "Verify amount field is empty")
+    @Test(description = "Verify All fields are empty")
     public void TCM2() {
-        accService = new accountServices(driver);
-        api = new apiPOM();
-        accountServices.pInfoData data = accService.new pInfoData();
-        data.payeeName = fullName;
-        data.street = street;
-        data.city = city;
-        data.state = state;
-        data.zipCode = zipcode;
-        data.phone = phone;
-        data.accno = "123";
-        data.vaccno = "123";
-        data.amount = "";
-
-        accService.payeeInfo(data, 0);
-        accService.clickSendPayment();
-        accService.errorFields("emptyAmountField");
-    }
-
-    @Test(description = "Verify All fields are  empty")
-    public void TCM3() {
         accService = new accountServices(driver);
         api = new apiPOM();
         accountServices.pInfoData data = accService.new pInfoData();
@@ -72,28 +52,8 @@ public class payBillTest extends paybillbasepage{
         accService.errorFields("emptyAllFields");
     }
 
-    @Test(description = "Verify invalid values in Amount field")
-    public void TCM4() {
-        accService = new accountServices(driver);
-        api = new apiPOM();
-        accountServices.pInfoData data = accService.new pInfoData();
-        data.payeeName = fullName;
-        data.street = street;
-        data.city = city;
-        data.state = state;
-        data.zipCode = zipcode;
-        data.phone = phone;
-        data.accno = "123";
-        data.vaccno = "123";
-        data.amount = "this is for testing 123";
-
-        accService.payeeInfo(data, 0);
-        accService.clickSendPayment();
-        accService.errorFields("errorInvalidAmount");
-    }
-
     @Test(description = "Verify invalid values in Account number field")
-    public void TCM5() {
+    public void TCM3() {
         accService = new accountServices(driver);
         api = new apiPOM();
         accountServices.pInfoData data = accService.new pInfoData();
@@ -113,7 +73,7 @@ public class payBillTest extends paybillbasepage{
     }
 
     @Test(description = "verify account number is not match")
-    public void TCM6() {
+    public void TCM4() {
         accService = new accountServices(driver);
         api = new apiPOM();
         accountServices.pInfoData data = accService.new pInfoData();
@@ -132,6 +92,45 @@ public class payBillTest extends paybillbasepage{
         accService.errorFields("errorMismatchAccNumber");
     }
 
+    @Test(description = "Verify invalid values in Amount field")
+    public void TCM5() {
+        accService = new accountServices(driver);
+        api = new apiPOM();
+        accountServices.pInfoData data = accService.new pInfoData();
+        data.payeeName = fullName;
+        data.street = street;
+        data.city = city;
+        data.state = state;
+        data.zipCode = zipcode;
+        data.phone = phone;
+        data.accno = "123";
+        data.vaccno = "123";
+        data.amount = "this is for testing 123";
+
+        accService.payeeInfo(data, 0);
+        accService.clickSendPayment();
+        accService.errorFields("errorInvalidAmount");
+    }
+
+    @Test(description = "Verify amount field is empty")
+    public void TCM6() {
+        accService = new accountServices(driver);
+        api = new apiPOM();
+        accountServices.pInfoData data = accService.new pInfoData();
+        data.payeeName = fullName;
+        data.street = street;
+        data.city = city;
+        data.state = state;
+        data.zipCode = zipcode;
+        data.phone = phone;
+        data.accno = "123";
+        data.vaccno = "123";
+        data.amount = "";
+
+        accService.payeeInfo(data, 0);
+        accService.clickSendPayment();
+        accService.errorFields("emptyAmountField");
+    }
 }
 
 /*
