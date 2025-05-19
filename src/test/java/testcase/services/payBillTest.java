@@ -168,17 +168,52 @@ public class payBillTest extends paybillbasepage{
         accService.payeeInfo(data, 0);
         accService.clickSendPayment();
     }
+
+    @Test(description = "Verify bill payment with negative amount")
+    public void TCM9() {
+        accService = new accountServices(driver);
+        api = new apiPOM();
+        accountServices.pInfoData data = accService.new pInfoData();
+        data.payeeName = fullName;
+        data.street = street;
+        data.city = city;
+        data.state = state;
+        data.zipCode = zipcode;
+        data.phone = phone;
+        data.accno = "123";
+        data.vaccno = "123";
+        data.amount = "-123";
+
+        accService.payeeInfo(data, 0);
+        accService.clickSendPayment();
+    }
+
+    @Test(description = "Verify paying using 2nd account #")
+    public void TCM10() {
+        accService = new accountServices(driver);
+        api = new apiPOM();
+        api.postCreateAccount(userName, passWord, "checking");
+        accountServices.pInfoData data = accService.new pInfoData();
+        data.payeeName = fullName;
+        data.street = street;
+        data.city = city;
+        data.state = state;
+        data.zipCode = zipcode;
+        data.phone = phone;
+        data.accno = "123";
+        data.vaccno = "123";
+        data.amount = "-123";
+
+        driver.navigate().refresh();
+        accService.payeeInfo(data, 1);
+        accService.clickSendPayment();
+    }
 }
 
 
 
 
 /*
-
-    Verify negative amount is not allowed
-    Verify valid characters are required in name & address fields
-    Verify successful payment updates transaction history
-    Verify dropdown (if any) selects a valid “From Account”
     Verify UI formatting for currency in amount
     Verify success message after payment
     Verify multiple bill payments can be made one after another
