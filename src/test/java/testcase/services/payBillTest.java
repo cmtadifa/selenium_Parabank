@@ -149,6 +149,25 @@ public class payBillTest extends paybillbasepage{
         accService.payeeInfo(data, 0);
         accService.clickSendPayment();
     }
+
+    @Test(description = "Verify bill payment with negative amount", enabled=false)
+    public void TCM8() {
+        accService = new accountServices(driver);
+        api = new apiPOM();
+        accountServices.pInfoData data = accService.new pInfoData();
+        data.payeeName = fullName;
+        data.street = street;
+        data.city = city;
+        data.state = state;
+        data.zipCode = zipcode;
+        data.phone = phone;
+        data.accno = "123";
+        data.vaccno = "123";
+        data.amount = "-123";
+
+        accService.payeeInfo(data, 0);
+        accService.clickSendPayment();
+    }
 }
 
 
