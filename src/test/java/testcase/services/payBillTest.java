@@ -131,7 +131,7 @@ public class payBillTest extends paybillbasepage{
         accService.clickSendPayment();
     }
 
-    @Test(description = "Verify bill payment with amount = 0", enabled=false)
+    @Test(description = "Verify bill payment with 0 amount", enabled=false)
     public void TCM7() {
         accService = new accountServices(driver);
         api = new apiPOM();
