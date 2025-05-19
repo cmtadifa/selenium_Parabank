@@ -112,7 +112,7 @@ public class payBillTest extends paybillbasepage{
         accService.errorFields("errorInvalidAmount");
     }
 
-    @Test(description = "Verify amount cannot be more than account balance", enabled=false)
+    @Test(description = "Verify amount cannot be more than account balance", enabled=false) //to enhance
     public void TCM6() {
         accService = new accountServices(driver);
         api = new apiPOM();
@@ -130,13 +130,32 @@ public class payBillTest extends paybillbasepage{
         accService.payeeInfo(data, 0);
         accService.clickSendPayment();
     }
+
+    @Test(description = "Verify bill payment with amount = 0", enabled=false)
+    public void TCM7() {
+        accService = new accountServices(driver);
+        api = new apiPOM();
+        accountServices.pInfoData data = accService.new pInfoData();
+        data.payeeName = fullName;
+        data.street = street;
+        data.city = city;
+        data.state = state;
+        data.zipCode = zipcode;
+        data.phone = phone;
+        data.accno = "123";
+        data.vaccno = "123";
+        data.amount = "0";
+
+        accService.payeeInfo(data, 0);
+        accService.clickSendPayment();
+    }
 }
 
 
 
 
 /*
-    Verify bill payment with amount = 0
+
     Verify negative amount is not allowed
     Verify valid characters are required in name & address fields
     Verify successful payment updates transaction history
