@@ -190,7 +190,7 @@ public class payBillTest extends paybillbasepage{
         accService.clickSendPayment();
     }
 
-    @Test(description = "Verify paying using 2nd account #")
+    @Test(description = "Verify multiple bill payments can be made one after another")
     public void TCM10() {
         accService = new accountServices(driver);
         api = new apiPOM();
@@ -219,6 +219,6 @@ public class payBillTest extends paybillbasepage{
 
 
 /*
-    Verify multiple bill payments can be made one after another
+
     Verify account balance is updated after bill payment
  */
