@@ -37,12 +37,12 @@ public class paybillbasepage {
         accService.selectAccountServices("billPay");
     }
 
-//    @AfterMethod
-//    public void tearDown() {
-//        // Close the browser after each test
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
+    @AfterMethod
+    public void tearDown() {
+        // Close the browser after each test
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }
 
