@@ -214,11 +214,3 @@ public class payBillTest extends paybillbasepage{
         }
     }
 }
-
-
-
-
-/*
-
-    Verify account balance is updated after bill payment
- */
