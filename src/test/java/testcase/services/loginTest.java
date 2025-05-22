@@ -10,6 +10,7 @@ public class loginTest extends basepage{
     accountServices accService;
     apiPOM api;
     homepage homePage;
+
     @Test(description = "Verify successful login with valid credentials")
     public void TCM1() throws InterruptedException {
         homePage = new homepage(driver);
@@ -24,12 +25,20 @@ public class loginTest extends basepage{
         homePage.successfullyLogin();
     }
 
+    @Test(description = "Verify login with invalid credentials")
+    public void TCM2() {
+        homePage = new homepage(driver);
+        accService = new accountServices(driver);
+
+        String userName = "testing!!";
+        String passWord = "parabankTest";
+        homePage.login(userName, passWord);
+        homePage.callbackFunction("invallidCreadentials");
+    }
+
 }
 
 /*
-Verify login with invalid username
-Verify login with invalid password
-Verify login with both username and password incorrect
 Verify login with blank username and password
 Verify login with only username entered
 Verify login with only password entered

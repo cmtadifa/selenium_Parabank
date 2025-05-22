@@ -47,6 +47,7 @@ public class homepage {
     private By liUsername = By.xpath("//input[@name='username']");
     private By liPassword =  By.xpath("//input[@name='password']");
     private By liBtm = By.xpath("//input[@value='Log In']");
+    private By liError = By.className("error");
 
     //faker
     private String fName = faker.name().firstName();
@@ -225,6 +226,13 @@ public class homepage {
     //login
     public void successfullyLogin() {
         Assert.assertEquals(driver.findElement(regSuccessfully).getText(),"Accounts Overview");
+    }
+
+    public void callbackFunction(String result) {
+        switch(result) {
+            case "invallidCreadentials":
+                Assert.assertEquals(driver.findElement(liError).getText(),"An internal error has occurred and has been logged.");
+        }
     }
 
 }
