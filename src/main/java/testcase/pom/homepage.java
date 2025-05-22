@@ -126,9 +126,9 @@ public class homepage {
 
     }
 
-    public void login() {
-        driver.findElement(liUsername).sendKeys("admin");
-        driver.findElement(liPassword).sendKeys("parabankTest");
+    public void login(String username, String password) {
+        driver.findElement(liUsername).sendKeys(username);
+        driver.findElement(liPassword).sendKeys(password);
         driver.findElement(liBtm).click();
     }
 
@@ -220,6 +220,11 @@ public class homepage {
                 Assert.assertEquals(driver.findElement(regCityError).getText(),"City is invalid.");
                 break;
         }
+    }
+
+    //login
+    public void successfullyLogin() {
+        Assert.assertEquals(driver.findElement(regSuccessfully).getText(),"Accounts Overview");
     }
 
 }
