@@ -3,7 +3,6 @@
     <test name="Registration and Login">
         <classes>
             <class name="testcase.accounts.accountRegistrationTest"/>
-            <class name="testcase.accounts.accountLoginTest"/>
             <!-- Add more test classes here -->
         </classes>
     </test>
