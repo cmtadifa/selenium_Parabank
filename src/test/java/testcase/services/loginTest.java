@@ -2,13 +2,11 @@ package testcase.services;
 import org.testng.annotations.Test;
 import testcase.base.basepage;
 import testcase.pom.accountServices;
-import testcase.pom.apiPOM;
 import testcase.pom.homepage;
 
 
 public class loginTest extends basepage{
     accountServices accService;
-    apiPOM api;
     homepage homePage;
 
     @Test(description = "Verify successful login with valid credentials")
@@ -28,7 +26,6 @@ public class loginTest extends basepage{
     @Test(description = "Verify login with invalid credentials")
     public void TCM2() {
         homePage = new homepage(driver);
-        accService = new accountServices(driver);
 
         String userName = "testing!!";
         String passWord = "parabankTest";
@@ -39,7 +36,6 @@ public class loginTest extends basepage{
     @Test(description = "Verify login with blank username and password")
     public void TCM3() {
         homePage = new homepage(driver);
-        accService = new accountServices(driver);
 
         String userName = "";
         String passWord = "";
@@ -50,7 +46,6 @@ public class loginTest extends basepage{
     @Test(description = "Verify login with only username entered")
     public void TCM4() {
         homePage = new homepage(driver);
-        accService = new accountServices(driver);
 
         String userName = "testing!!";
         String passWord = "";
@@ -61,7 +56,6 @@ public class loginTest extends basepage{
     @Test(description = "Verify login with only password entered")
     public void TCM5() {
         homePage = new homepage(driver);
-        accService = new accountServices(driver);
 
         String userName = "";
         String passWord = "parabankTest";
@@ -81,11 +75,3 @@ public class loginTest extends basepage{
         accService.selectAccountServices("logOut");
     }
 }
-
-/*
-
-
-
-
-
- */
