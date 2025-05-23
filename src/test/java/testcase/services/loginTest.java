@@ -58,7 +58,7 @@ public class loginTest extends basepage{
         homePage.callbackFunction("blankCredentials");
     }
 
-    @Test(description = "Verify login with only password entered\n")
+    @Test(description = "Verify login with only password entered")
     public void TCM5() {
         homePage = new homepage(driver);
         accService = new accountServices(driver);
@@ -68,12 +68,24 @@ public class loginTest extends basepage{
         homePage.login(userName, passWord);
         homePage.callbackFunction("blankCredentials");
     }
+
+    @Test(description = "Verify logging-in and logout")
+    public void TCM6() {
+        homePage = new homepage(driver);
+        accService = new accountServices(driver);
+
+        String userName = "";
+        String passWord = "parabankTest";
+        homePage.login(userName, passWord);
+        homePage.callbackFunction("blankCredentials");
+        accService.selectAccountServices("logOut");
+    }
 }
 
 /*
 
 
-Verify login with special characters in username
-Verify login functionality after logout
+
+
 
  */
