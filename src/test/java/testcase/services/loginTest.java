@@ -47,11 +47,21 @@ public class loginTest extends basepage{
         homePage.callbackFunction("blankCredentials");
     }
 
+    @Test(description = "Verify login with only username entered")
+    public void TCM4() {
+        homePage = new homepage(driver);
+        accService = new accountServices(driver);
+
+        String userName = "testing!!";
+        String passWord = "";
+        homePage.login(userName, passWord);
+        homePage.callbackFunction("blankCredentials");
+    }
 }
 
 /*
 
-Verify login with only username entered
+
 Verify login with only password entered
 Verify login with special characters in username
 Verify login functionality after logout
