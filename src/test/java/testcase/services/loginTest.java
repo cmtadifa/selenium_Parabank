@@ -33,13 +33,24 @@ public class loginTest extends basepage{
         String userName = "testing!!";
         String passWord = "parabankTest";
         homePage.login(userName, passWord);
-        homePage.callbackFunction("invallidCreadentials");
+        homePage.callbackFunction("invalidCredentials");
+    }
+
+    @Test(description = "Verify login with blank username and password")
+    public void TCM3() {
+        homePage = new homepage(driver);
+        accService = new accountServices(driver);
+
+        String userName = "";
+        String passWord = "";
+        homePage.login(userName, passWord);
+        homePage.callbackFunction("blankCredentials");
     }
 
 }
 
 /*
-Verify login with blank username and password
+
 Verify login with only username entered
 Verify login with only password entered
 Verify login with special characters in username

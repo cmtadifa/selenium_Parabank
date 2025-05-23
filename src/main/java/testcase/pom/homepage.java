@@ -230,8 +230,12 @@ public class homepage {
 
     public void callbackFunction(String result) {
         switch(result) {
-            case "invallidCreadentials":
+            case "invalidCredentials":
                 Assert.assertEquals(driver.findElement(liError).getText(),"An internal error has occurred and has been logged.");
+            break;
+            case "blankCredentials":
+                Assert.assertEquals(driver.findElement(liError).getText(),"Please enter a username and password.");
+                break;
         }
     }
 
