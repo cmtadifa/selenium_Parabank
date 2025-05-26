@@ -15,7 +15,11 @@ public class openAccTest extends openaccbasepage {
     public void TCM1() {
         homePage = new homepage(driver);
         api = new apiPOM();
-
+    //register
+    //go to open account
+    //check balance should be greater than the minimum value
+    //input valid amount and create amd assert successfully
+    //check the first account deducted balance and put it to newly account
 
     }
     /*
