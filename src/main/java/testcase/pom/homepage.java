@@ -43,6 +43,14 @@ public class homepage {
     private By regPasswordError = By.id("customer.password.errors");
     private By regConfPasswordError = By.id("repeatedPassword.errors");
 
+    //headerpanel
+    private By solutionsLink = By.linkText("Solutions");
+    private By aboutusLink = By.linkText("About Us");
+    private By servicesLink = By.linkText("Services");
+    private By productsLink = By.linkText("Products");
+    private By locationsLink = By.linkText("Locations");
+    private By adminpageLink = By.linkText("Admin Page");
+
     //login
     private By liUsername = By.xpath("//input[@name='username']");
     private By liPassword =  By.xpath("//input[@name='password']");
@@ -238,5 +246,30 @@ public class homepage {
                 break;
         }
     }
+
+    //header panel
+    public void selectPanelServices(String headerPanel) {
+        switch (headerPanel) {
+            case "solutions":
+                driver.findElement(solutionsLink).click();
+                break;
+            case "aboutUs":
+                driver.findElement(aboutusLink).click();
+                break;
+            case "services":
+                driver.findElement(servicesLink).click();
+                break;
+            case "products":
+                driver.findElement(productsLink).click();
+                break;
+            case "locations":
+                driver.findElement(locationsLink).click();
+                break;
+            case "adminPage":
+                driver.findElement(adminpageLink).click();
+                break;
+        }
+    }
+
 
 }

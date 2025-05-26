@@ -1,22 +1,31 @@
 package testcase.services;
 import org.testng.annotations.Test;
-import testcase.base.openaccbasepage;
+import testcase.base.basepage;
 import testcase.pom.accountServices;
 import testcase.pom.apiPOM;
 import testcase.pom.homepage;
 
 
-public class openAccTest extends openaccbasepage {
+public class openAccTest extends basepage {
     accountServices accService;
     homepage homePage;
     apiPOM api;
 
     @Test(description = "Verify opening a Checking account with valid amount")
-    public void TCM1() {
+    public void TCM1() throws InterruptedException {
         homePage = new homepage(driver);
         api = new apiPOM();
-    //register
-    //go to open account
+        accService = new accountServices(driver);
+
+        homePage.selectPanelServices("adminPage");
+//        homePage.clickRegister();
+//        homePage.register();
+//
+//        this.userName = homePage.getUserName();
+//        this.passWord = homePage.getPassWord();
+//
+//        accService.selectAccountServices("newAccount");
+
     //check balance should be greater than the minimum value
     //input valid amount and create amd assert successfully
     //check the first account deducted balance and put it to newly account

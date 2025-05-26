@@ -21,15 +21,7 @@ public class openaccbasepage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(config.BASE_URL);
 
-        homepage homePage = new homepage(driver);
-        accountServices accService = new accountServices(driver);
-        homePage.clickRegister();
-        homePage.register();
 
-        this.userName = homePage.getUserName();
-        this.passWord = homePage.getPassWord();
-
-        accService.selectAccountServices("newAccount");
     }
 
 //    @AfterMethod
