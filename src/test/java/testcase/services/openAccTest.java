@@ -18,6 +18,7 @@ public class openAccTest extends basepage {
         accService = new accountServices(driver);
 
         homePage.selectPanelServices("adminPage");
+        homePage.setBalance(1000,100);
 //        homePage.clickRegister();
 //        homePage.register();
 //

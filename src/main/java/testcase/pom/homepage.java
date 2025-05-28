@@ -70,6 +70,10 @@ public class homepage {
     private String passWord = "parabankTest";
     private String confPassWord = passWord; // to match password
 
+    //application settings
+    private By initBalance = By.id("initialBalance");
+    private By minBalance = By.id("minimumBalance");
+    private By submitBtn = By.xpath("//input[@value='Submit']");
 
     public homepage(WebDriver driver) {
         this.driver = driver;
@@ -271,5 +275,14 @@ public class homepage {
         }
     }
 
+    public void setBalance(double initial, double minimum) {
+        WebElement initElement = driver.findElement(initBalance);
+        WebElement minElement = driver.findElement(minBalance);
+        initElement.clear();
+        initElement.sendKeys(String.valueOf(initial));
+        minElement.clear();
+        minElement.sendKeys(String.valueOf(minimum));
+        driver.findElement(submitBtn).click();
+    }
 
 }
