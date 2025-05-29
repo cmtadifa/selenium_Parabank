@@ -19,13 +19,15 @@ public class openAccTest extends basepage {
 
         homePage.selectPanelServices("adminPage");
         homePage.setBalance(1000,100);
-//        homePage.clickRegister();
-//        homePage.register();
-//
-//        this.userName = homePage.getUserName();
-//        this.passWord = homePage.getPassWord();
-//
-//        accService.selectAccountServices("newAccount");
+        homePage.clickRegister();
+        homePage.register();
+
+        String userName = homePage.getUserName();
+        String passWord = homePage.getPassWord();
+
+        accService.selectAccountServices("newAccount");
+
+
 
     //check balance should be greater than the minimum value
     //input valid amount and create amd assert successfully
