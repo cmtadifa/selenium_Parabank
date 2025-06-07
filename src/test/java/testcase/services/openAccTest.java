@@ -14,11 +14,13 @@ public class openAccTest extends basepage {
     @Test(description = "Verify opening a Checking account with valid amount")
     public void TCM1() throws InterruptedException {
         homePage = new homepage(driver);
-        api = new apiPOM();
+        api = new apiPOM();;
         accService = new accountServices(driver);
 
         homePage.selectPanelServices("adminPage");
-        homePage.setBalance(1000,100);
+        double initial = 1000;
+        double minimum = 100;
+        homePage.setBalance(initial,minimum);
         homePage.clickRegister();
         homePage.register();
 
@@ -26,8 +28,9 @@ public class openAccTest extends basepage {
         String passWord = homePage.getPassWord();
 
         accService.selectAccountServices("newAccount");
-
-
+        String accBal = api.getAccountBalance(userName, passWord);
+        System.out.println(accBal);
+        accService.checkAcc(accBal, minimum);
 
     //check balance should be greater than the minimum value
     //input valid amount and create amd assert successfully

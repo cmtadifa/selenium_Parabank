@@ -61,6 +61,9 @@ public class accountServices {
     private By billErrorEmptyAmount = By.id("validationModel-amount-empty");
     private By billErrorInvalidAmount = By.id("validationModel-amount-invalid");
 
+    //open acc
+
+
 
     public accountServices(WebDriver driver) {
         this.driver = driver;
@@ -230,7 +233,9 @@ public class accountServices {
 
 
     //open acc
-
-
+    public void checkAcc(String balance, double minimum) {
+        double Dbalance = Double.parseDouble(balance);
+        Assert.assertTrue(Dbalance > minimum, "Balance is not greater than minimum!");
+    }
 
 }
