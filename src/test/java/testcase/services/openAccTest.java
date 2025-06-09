@@ -33,8 +33,31 @@ public class openAccTest extends basepage {
         accService.clickOpenAccBtn();
         accService.successOpenAccTxt();
     }
-    /*
 
+    @Test(description = "Verify opening a Checking account with exact required amount")
+    public void TCM2() throws InterruptedException {
+        homePage = new homepage(driver);
+        api = new apiPOM();;
+        accService = new accountServices(driver);
+
+        homePage.selectPanelServices("adminPage");
+        double initial = 100;
+        double minimum = 100;
+        homePage.setBalance(initial,minimum);
+        homePage.clickRegister();
+        homePage.register();
+
+        String userName = homePage.getUserName();
+        String passWord = homePage.getPassWord();
+
+        accService.selectAccountServices("newAccount");
+        String accBal = api.getAccountBalance(userName, passWord);
+        accService.checkAcc(accBal, minimum);
+        accService.clickOpenAccBtn();
+        accService.successOpenAccTxt();
+    }
+
+    /*
     Verify opening a Checking account with exact required amount
     Verify opening a Checking account with blank amount field
     Verify opening a Checking account with alphanumeric amount

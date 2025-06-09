@@ -234,7 +234,7 @@ public class accountServices {
     //open acc
     public void checkAcc(String balance, double minimum) {
         double Dbalance = Double.parseDouble(balance);
-        Assert.assertTrue(Dbalance > minimum, "Balance is not greater than minimum");
+        Assert.assertTrue(Dbalance >= minimum, "Balance is not greater than minimum");
     }
 
     public void clickOpenAccBtn () {
