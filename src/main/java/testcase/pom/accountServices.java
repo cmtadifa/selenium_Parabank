@@ -62,8 +62,8 @@ public class accountServices {
     private By billErrorInvalidAmount = By.id("validationModel-amount-invalid");
 
     //open acc
-
-
+    private By openAccBtn = By.xpath("//input[@type='button']");
+    private By successfullyOpenAccTxt = By.xpath("//p[contains(text(),'Congratulations, your account is now open.')]");
 
     public accountServices(WebDriver driver) {
         this.driver = driver;
@@ -231,11 +231,21 @@ public class accountServices {
         }
     }
 
-
     //open acc
     public void checkAcc(String balance, double minimum) {
         double Dbalance = Double.parseDouble(balance);
-        Assert.assertTrue(Dbalance > minimum, "Balance is not greater than minimum!");
+        Assert.assertTrue(Dbalance > minimum, "Balance is not greater than minimum");
+    }
+
+    public void clickOpenAccBtn () {
+        driver.findElement(openAccBtn).click();
+    }
+
+    public void successOpenAccTxt() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(successfullyOpenAccTxt));
+        String successTxt = element.getText();
+        Assert.assertEquals(successTxt, "Congratulations, your account is now open.");
     }
 
 }

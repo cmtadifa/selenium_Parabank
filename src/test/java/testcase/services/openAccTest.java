@@ -29,13 +29,9 @@ public class openAccTest extends basepage {
 
         accService.selectAccountServices("newAccount");
         String accBal = api.getAccountBalance(userName, passWord);
-        System.out.println(accBal);
         accService.checkAcc(accBal, minimum);
-
-    //check balance should be greater than the minimum value
-    //input valid amount and create amd assert successfully
-    //check the first account deducted balance and put it to newly account
-
+        accService.clickOpenAccBtn();
+        accService.successOpenAccTxt();
     }
     /*
 
