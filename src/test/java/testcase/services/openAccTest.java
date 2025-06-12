@@ -30,6 +30,7 @@ public class openAccTest extends basepage {
         accService.selectAccountServices("newAccount");
         String accBal = api.getAccountBalance(userName, passWord);
         accService.checkAcc(accBal, minimum);
+        accService.selectTypeAcc("CHECKING");
         accService.clickOpenAccBtn();
         accService.successOpenAccTxt();
     }
@@ -53,6 +54,7 @@ public class openAccTest extends basepage {
         accService.selectAccountServices("newAccount");
         String accBal = api.getAccountBalance(userName, passWord);
         accService.checkAcc(accBal, minimum);
+        accService.selectTypeAcc("CHECKING");
         accService.clickOpenAccBtn();
         accService.successOpenAccTxt();
     }
@@ -76,15 +78,59 @@ public class openAccTest extends basepage {
         accService.selectAccountServices("newAccount");
         String accBal = api.getAccountBalance(userName, passWord);
         accService.checkAcc(accBal, minimum);
+        accService.selectTypeAcc("CHECKING");
         accService.clickOpenAccBtn();
         accService.successOpenAccTxt();
     }
 
+    @Test(description = "Verify opening a Checking account with less than the required amount", enabled = false)
+    public void TCM5() throws InterruptedException {
+        homePage = new homepage(driver);
+        api = new apiPOM();;
+        accService = new accountServices(driver);
+
+        homePage.selectPanelServices("adminPage");
+        double initial = 900;
+        double minimum = 1000;
+        homePage.setBalance(initial,minimum);
+        homePage.clickRegister();
+        homePage.register();
+
+        String userName = homePage.getUserName();
+        String passWord = homePage.getPassWord();
+
+        accService.selectAccountServices("newAccount");
+        String accBal = api.getAccountBalance(userName, passWord);
+        accService.checkAcc(accBal, minimum);
+    }
+
+    @Test(description = "Verify opening a Savings account with valid amount")
+    public void TCM6() throws InterruptedException {
+        homePage = new homepage(driver);
+        api = new apiPOM();;
+        accService = new accountServices(driver);
+
+        homePage.selectPanelServices("adminPage");
+        double initial = 1000;
+        double minimum = 100;
+        homePage.setBalance(initial,minimum);
+        homePage.clickRegister();
+        homePage.register();
+
+        String userName = homePage.getUserName();
+        String passWord = homePage.getPassWord();
+
+        accService.selectAccountServices("newAccount");
+        String accBal = api.getAccountBalance(userName, passWord);
+        accService.checkAcc(accBal, minimum);
+        accService.selectTypeAcc("SAVINGS");
+        accService.clickOpenAccBtn();
+        accService.successOpenAccTxt();
+    }
     /*
-    Verify opening a Checking account with blank amount field
-    Verify opening a Checking account with alphanumeric amount
-    Verify opening a Checking account with less than the required amount
-    Verify opening a Savings account with valid amount
+
+
+
     Verify opening a Savings account with exact required amount
     Verify opening a Savings account with blank amount field
     Verify opening a Savings account with alphanumeric amount

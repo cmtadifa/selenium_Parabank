@@ -63,6 +63,7 @@ public class accountServices {
 
     //open acc
     private By openAccBtn = By.xpath("//input[@type='button']");
+    private By typeAcc = By.id("type");
     private By successfullyOpenAccTxt = By.xpath("//p[contains(text(),'Congratulations, your account is now open.')]");
 
     public accountServices(WebDriver driver) {
@@ -235,6 +236,15 @@ public class accountServices {
     public void checkAcc(String balance, double minimum) {
         double Dbalance = Double.parseDouble(balance);
         Assert.assertTrue(Dbalance >= minimum, "Balance is not greater than minimum");
+    }
+
+    public void selectTypeAcc (String accountType ) {
+        WebElement typeAccDropDown = driver.findElement(typeAcc);
+
+        Select select = new Select(typeAccDropDown);
+
+        String accType = accountType.toUpperCase();
+        select.selectByVisibleText(accType);
     }
 
     public void clickOpenAccBtn () {
