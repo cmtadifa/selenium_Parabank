@@ -127,12 +127,60 @@ public class openAccTest extends basepage {
         accService.clickOpenAccBtn();
         accService.successOpenAccTxt();
     }
+
+    @Test(description = "Verify opening a Savings account with exact required amount")
+    public void TCM7() throws InterruptedException {
+        homePage = new homepage(driver);
+        api = new apiPOM();;
+        accService = new accountServices(driver);
+
+        homePage.selectPanelServices("adminPage");
+        double initial = 100;
+        double minimum = 100;
+        homePage.setBalance(initial,minimum);
+        homePage.clickRegister();
+        homePage.register();
+
+        String userName = homePage.getUserName();
+        String passWord = homePage.getPassWord();
+
+        accService.selectAccountServices("newAccount");
+        String accBal = api.getAccountBalance(userName, passWord);
+        accService.checkAcc(accBal, minimum);
+        accService.selectTypeAcc("SAVINGS");
+        accService.clickOpenAccBtn();
+        accService.successOpenAccTxt();
+    }
+
+    @Test(description = "Verify opening a Savings account with blank amount field")
+    public void TCM8() throws InterruptedException {
+        homePage = new homepage(driver);
+        api = new apiPOM();;
+        accService = new accountServices(driver);
+
+        homePage.selectPanelServices("adminPage");
+        double initial = 100;
+        double minimum = 0;
+        homePage.setBalance(initial,minimum);
+        homePage.clickRegister();
+        homePage.register();
+
+        String userName = homePage.getUserName();
+        String passWord = homePage.getPassWord();
+
+        accService.selectAccountServices("newAccount");
+        String accBal = api.getAccountBalance(userName, passWord);
+        accService.checkAcc(accBal, minimum);
+        accService.selectTypeAcc("SAVINGS");
+        accService.clickOpenAccBtn();
+        accService.successOpenAccTxt();
+    }
     /*
 
 
 
-    Verify opening a Savings account with exact required amount
-    Verify opening a Savings account with blank amount field
+
+
     Verify opening a Savings account with alphanumeric amount
     Verify opening a Savings account with less than the required amount
     Verify opening a Savings and Checking account using the first account
