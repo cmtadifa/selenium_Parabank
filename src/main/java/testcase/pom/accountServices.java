@@ -65,6 +65,7 @@ public class accountServices {
     private By openAccBtn = By.xpath("//input[@type='button']");
     private By typeAcc = By.id("type");
     private By successfullyOpenAccTxt = By.xpath("//p[contains(text(),'Congratulations, your account is now open.')]");
+    private By accID = By.id("fromAccountId");
 
     public accountServices(WebDriver driver) {
         this.driver = driver;
@@ -245,6 +246,14 @@ public class accountServices {
 
         String accType = accountType.toUpperCase();
         select.selectByVisibleText(accType);
+    }
+
+    // to update
+    public void selectAccID () {
+        WebElement dropdown = driver.findElement(By.id("fromAccountId"));
+        Select select = new Select(dropdown);
+        select.selectByIndex(1);
+
     }
 
     public void clickOpenAccBtn () {

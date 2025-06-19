@@ -203,10 +203,43 @@ public class openAccTest extends basepage {
         accService.selectTypeAcc("SAVINGS");
     }
 
+    @Test(description = "Verify opening a new account using the other opened account")
+    public void TCM10() throws InterruptedException {
+        homePage = new homepage(driver);
+        api = new apiPOM();;
+        accService = new accountServices(driver);
 
+        homePage = new homepage(driver);
+        api = new apiPOM();;
+        accService = new accountServices(driver);
+
+        homePage.selectPanelServices("adminPage");
+        double initial = 1000;
+        double minimum = 100;
+        homePage.setBalance(initial,minimum);
+        homePage.clickRegister();
+        homePage.register();
+
+        String userName = homePage.getUserName();
+        String passWord = homePage.getPassWord();
+
+        accService.selectAccountServices("newAccount");
+        String accBal = api.getAccountBalance(userName, passWord);
+        accService.checkAcc(accBal, minimum);
+        accService.selectTypeAcc("SAVINGS");
+        accService.clickOpenAccBtn();
+        accService.successOpenAccTxt();
+
+
+        accService.selectAccountServices("newAccount");
+        accService.selectTypeAcc("SAVINGS");
+        //to update
+        accService.selectAccID();
+//        accService.clickOpenAccBtn();
+//        accService.successOpenAccTxt();
+    }
     /*
-    Verify opening a Savings and Checking account using the first account
-    Verify opening a new account using the other opened account
+
     Verify account dropdown with 3 opened account to be the same  with the accounts overview
      */
 
