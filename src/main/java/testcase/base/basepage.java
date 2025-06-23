@@ -16,12 +16,12 @@ public class basepage {
         driver.get(config.BASE_URL);
     }
 
-//    @AfterMethod
-//    public void tearDown() {
-//        // Close the browser after each test
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
+    @AfterMethod
+    public void tearDown() {
+        // Close the browser after each test
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }
 
