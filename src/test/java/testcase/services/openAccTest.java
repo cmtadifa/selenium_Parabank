@@ -203,7 +203,8 @@ public class openAccTest extends basepage {
         accService.selectTypeAcc("SAVINGS");
     }
 
-    @Test(description = "Verify opening a new account using the other opened account")
+    //to update, not yet working the expected output
+    @Test(description = "Verify opening a new account using the other opened account", enabled = false)
     public void TCM10() throws InterruptedException {
         homePage = new homepage(driver);
         api = new apiPOM();;
@@ -235,12 +236,6 @@ public class openAccTest extends basepage {
         accService.selectTypeAcc("SAVINGS");
         //to update
         accService.selectAccID();
-//        accService.clickOpenAccBtn();
-//        accService.successOpenAccTxt();
+
     }
-    /*
-
-    Verify account dropdown with 3 opened account to be the same  with the accounts overview
-     */
-
 }

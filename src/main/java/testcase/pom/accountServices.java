@@ -248,12 +248,11 @@ public class accountServices {
         select.selectByVisibleText(accType);
     }
 
-    // to update
+    //to update, not yet working the expected output
     public void selectAccID () {
         WebElement dropdown = driver.findElement(By.id("fromAccountId"));
         Select select = new Select(dropdown);
         select.selectByIndex(1);
-
     }
 
     public void clickOpenAccBtn () {
