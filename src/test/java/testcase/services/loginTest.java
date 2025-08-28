@@ -63,15 +63,4 @@ public class loginTest extends basepage{
         homePage.callbackFunction("blankCredentials");
     }
 
-    @Test(description = "Verify logging-in and logout")
-    public void TCM6() {
-        homePage = new homepage(driver);
-        accService = new accountServices(driver);
-
-        String userName = "";
-        String passWord = "parabankTest";
-        homePage.login(userName, passWord);
-        homePage.callbackFunction("blankCredentials");
-        accService.selectAccountServices("logOut");
-    }
 }

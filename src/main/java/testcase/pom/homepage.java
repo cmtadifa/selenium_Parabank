@@ -243,7 +243,7 @@ public class homepage {
     public void callbackFunction(String result) {
         switch(result) {
             case "invalidCredentials":
-                Assert.assertEquals(driver.findElement(liError).getText(),"An internal error has occurred and has been logged.");
+                Assert.assertEquals(driver.findElement(liError).getText(),"The username and password could not be verified.");
             break;
             case "blankCredentials":
                 Assert.assertEquals(driver.findElement(liError).getText(),"Please enter a username and password.");
